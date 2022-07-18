@@ -28,7 +28,7 @@ class loginAPI: ObservableObject {
     func getJWT(completion: @escaping jwt_alias) {
         
         guard
-            let url = URL(string: "https://my-game-list-front.herokuapp.com/api/users/login/")
+            let url = URL(string: Constant.url_base + Constant.login_url)
         else {
 
             return
@@ -66,7 +66,6 @@ class loginAPI: ObservableObject {
             }
         }.resume()
     }
-    
 }
 
 typealias jwt_alias = (JWT) -> Void
@@ -78,9 +77,6 @@ struct JWT: Decodable {
         case token = "token"
     }
 }
-
-
-
 
 
 // this may or may not be used at some point to pass data out
