@@ -1,38 +1,30 @@
 //
-//  login.swift
-//  gamelist
+//  ApiTest.swift
+//  testingClosures
 //
-//  Created by Harry Hocker on 7/13/22.
+//  Created by Harry Hocker on 7/17/22.
 //
 
-import UIKit
-import Foundation
+/*
 import SwiftUI
 
-struct login: View {
+struct ApiTest: View {
     
     @StateObject var vm = loginAPI()
     
-    @State var name = "nothing"
-    
     var body: some View {
-        VStack{
         Text(vm.jwt_token)
             .foregroundColor(.blue)
             .fontWeight(.semibold)
             .onTapGesture {
-                vm.setInfo(username: "someguy", password: "test")
                 vm.getData()
-                name = vm.username
             }
-        Text(name)
-        }
     }
 }
 
-struct login_Previews: PreviewProvider {
+struct ApiTest_Previews: PreviewProvider {
     static var previews: some View {
-        login()
+        ApiTest()
     }
 }
 
@@ -43,10 +35,11 @@ class loginAPI: ObservableObject {
     @Published var username: String = ""
     @Published var password: String = ""
     
-    func setInfo(username: String, password: String) {
+    func getInfo(username: String, password: String) {
         self.username = username
         self.password = password
     }
+    
     
     func getData() {
         getJWT { (returnedData) in
@@ -57,7 +50,7 @@ class loginAPI: ObservableObject {
     func getJWT(completion: @escaping jwt_alias) {
         
         guard
-            let url = URL(string: Constant.base_url + Constant.login_url)
+            let url = URL(string: "https://my-game-list-front.herokuapp.com/api/users/login/")
         else {
 
             return
@@ -67,7 +60,7 @@ class loginAPI: ObservableObject {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let body = ["userName": username, "password": password]
+        let body = ["userName": "someguy", "password": "test"]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -101,35 +94,14 @@ class loginAPI: ObservableObject {
 
 typealias jwt_alias = (JWT) -> Void
 
-struct JWT: Decodable
-{
+struct JWT: Decodable {
     let token: String
-    
     enum CodingKeys: String, CodingKey
     {
         case token = "token"
     }
 }
 
-struct USER: Decodable
-{
-    let firstName: String
-    let lastName: String
-    let email: String
-    let userName: String
-    let userID: String
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case firstName = "firstName"
-        case lastName = "lastName"
-        case email = "email"
-        case userName = "userName"
-        case userID = "id"
-    }
-}
 
 
-
-
-
+*/

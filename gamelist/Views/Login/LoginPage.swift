@@ -12,11 +12,20 @@ struct LoginPage : View {
     @State var username: String = ""
     @State var password: String = ""
     
+    @StateObject var vm = loginAPI()
+    
     @ObservedObject var keyboardResponder = KeyboardResponder()
     
     var body: some View {
         
             VStack {
+                
+                Text(vm.jwt_token)
+                    .foregroundColor(.blue)
+                    .fontWeight(.semibold)
+                    .onTapGesture {
+                        vm.getData()
+                    }
                 
                 Text("PLACEHOLDER TEXT: IMAGE GOES HERE")
                     .font(.largeTitle)

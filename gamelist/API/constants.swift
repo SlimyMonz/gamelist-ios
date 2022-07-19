@@ -8,7 +8,7 @@
 import Foundation
 
 enum Constant {
-     static let url_base = "https://my-game-list-front.herokuapp.com/"
+     static let base_url = "https://my-game-list-front.herokuapp.com/"
      static let login_url = "api/users/login/"
     
      
