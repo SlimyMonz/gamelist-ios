@@ -26,6 +26,8 @@ struct login: View {
                 name = vm.username
             }
         Text(name)
+        Text(vm.id)
+            Text(vm.verified.description)
         }
     }
 }
@@ -43,14 +45,19 @@ class loginAPI: ObservableObject {
     @Published var username: String = ""
     @Published var password: String = ""
     
+    @Published var id: String = "none"
+    @Published var verified: Bool = false
+    
     func setInfo(username: String, password: String) {
         self.username = username
         self.password = password
     }
     
     func getData() {
-        getJWT { (returnedData) in
-            self.jwt_token = returnedData.firstName
+        getJWT { (token, user) in
+            self.jwt_token = token
+            self.id = user.id
+            self.verified = user.verified
         }
     }
     
@@ -89,8 +96,9 @@ class loginAPI: ObservableObject {
             }
             do {
                 let decodedData = try JSONDecoder().decode(JWT.self, from: data)
-                let payload = try decode_jwt(jwtToken: decodedData.token)
-                completion(payload)
+                self.jwt_token = decodedData.token
+                let payload = decode_jwt(jwt: self.jwt_token)
+                completion(decodedData.token, payload!)
             } catch {
 
             }
@@ -100,7 +108,7 @@ class loginAPI: ObservableObject {
 }
 
 
-typealias decode_alias = (USER) -> Void
+typealias decode_alias = (String, USER) -> Void
 
 struct JWT: Decodable
 {
@@ -113,23 +121,8 @@ struct JWT: Decodable
 }
 
 
-struct USER: Decodable
-{
-    let firstName: String
-    let lastName: String
-    let email: String
-    let userName: String
-    let userID: String
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case firstName = "firstName"
-        case lastName = "lastName"
-        case email = "email"
-        case userName = "userName"
-        case userID = "id"
-    }
-}
+
+
 
 
 

@@ -7,15 +7,16 @@
 
 import Foundation
 
-func decode_jwt(jwt: String) -> String
+func decode_jwt(jwt: String) -> USER?
 {
     let parts = jwt.components(separatedBy: ".")
     
     let body = parts[1]
     
     let base64 = base64url_to_base64(base64url: body)
-    guard let payload = base64Decoded(base64: base64) else { return "-1" }
-        
+    guard let jsondata = base64Decoded(base64: base64) else { return nil }
+    let payload = decode_JSON(json: jsondata)
+    
     return payload
 }
 
@@ -30,10 +31,42 @@ func base64url_to_base64(base64url: String) -> String
     return base64
 }
 
-func base64Decoded(base64: String) -> String?
+func base64Decoded(base64: String) -> Data?
 {
-        guard let data = Data(base64Encoded: base64) else { return nil }
-        return String(data: data, encoding: .utf8)
+        let payload = Data(base64Encoded: base64)
+        return payload
+}
+
+func decode_JSON(json: Data) -> USER
+{
+    do {
+        let data = try JSONDecoder().decode(JSON.self, from: json)
+        return data.user[0]
+    } catch {
+        return USER(id: "-1", verified: false)
+    }
+}
+
+struct JSON: Decodable
+{
+    let user: [USER]
+    
+    enum CodingKeys: String, CodingKey
+    {
+       case user = "user"
+    }
+}
+
+struct USER: Decodable
+{
+    let id: String
+    let verified: Bool
+    
+    enum CodingKeys: String, CodingKey
+    {
+        case id = "_id"
+        case verified = "verified"
+    }
 }
 
 
