@@ -7,33 +7,33 @@
 
 import Foundation
 
-func decode_jwt(jwtToken jwt: String) throws -> [String: Any] {
-
-    enum DecodeErrors: Error {
-        case badToken
-        case other
-    }
-
-    func base64Decode(_ base64: String) throws -> Data {
-        let base64 = base64
-            .replacingOccurrences(of: "-", with: "+")
-            .replacingOccurrences(of: "_", with: "/")
-        let padded = base64.padding(toLength: ((base64.count + 3) / 4) * 4, withPad: "=", startingAt: 0)
-        guard let decoded = Data(base64Encoded: padded) else {
-            throw DecodeErrors.badToken
-        }
-        return decoded
-    }
-
-    func decodeJWTPart(_ value: String) throws -> [String: Any] {
-        let bodyData = try base64Decode(value)
-        let json = try JSONSerialization.jsonObject(with: bodyData, options: [])
-        guard let payload = json as? [String: Any] else {
-            throw DecodeErrors.other
-        }
-        return payload
-    }
-
-    let segments = jwt.components(separatedBy: ".")
-    return try decodeJWTPart(segments[1])
+func decode_jwt(jwt: String) -> String
+{
+    let parts = jwt.components(separatedBy: ".")
+    
+    let body = parts[1]
+    
+    let base64 = base64url_to_base64(base64url: body)
+    guard let payload = base64Decoded(base64: base64) else { return "-1" }
+        
+    return payload
 }
+
+func base64url_to_base64(base64url: String) -> String
+{
+    var base64 = base64url
+        .replacingOccurrences(of: "-", with: "+")
+        .replacingOccurrences(of: "_", with: "/")
+    if base64.count % 4 != 0 {
+        base64.append(String(repeating: "=", count: 4 - base64.count % 4))
+    }
+    return base64
+}
+
+func base64Decoded(base64: String) -> String?
+{
+        guard let data = Data(base64Encoded: base64) else { return nil }
+        return String(data: data, encoding: .utf8)
+}
+
+

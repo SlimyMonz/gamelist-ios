@@ -21,7 +21,7 @@ struct login: View {
             .foregroundColor(.blue)
             .fontWeight(.semibold)
             .onTapGesture {
-                vm.setInfo(username: "someguy", password: "test")
+                vm.setInfo(username: "monz", password: "password")
                 vm.getData()
                 name = vm.username
             }
@@ -50,11 +50,11 @@ class loginAPI: ObservableObject {
     
     func getData() {
         getJWT { (returnedData) in
-            self.jwt_token = returnedData.token
+            self.jwt_token = returnedData.firstName
         }
     }
     
-    func getJWT(completion: @escaping jwt_alias) {
+    func getJWT(completion: @escaping decode_alias) {
         
         guard
             let url = URL(string: Constant.base_url + Constant.login_url)
@@ -66,7 +66,7 @@ class loginAPI: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         let body = ["userName": username, "password": password]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
@@ -89,7 +89,8 @@ class loginAPI: ObservableObject {
             }
             do {
                 let decodedData = try JSONDecoder().decode(JWT.self, from: data)
-                completion(decodedData)
+                let payload = try decode_jwt(jwtToken: decodedData.token)
+                completion(payload)
             } catch {
 
             }
@@ -99,7 +100,7 @@ class loginAPI: ObservableObject {
 }
 
 
-typealias jwt_alias = (JWT) -> Void
+typealias decode_alias = (USER) -> Void
 
 struct JWT: Decodable
 {
@@ -110,6 +111,7 @@ struct JWT: Decodable
         case token = "token"
     }
 }
+
 
 struct USER: Decodable
 {
