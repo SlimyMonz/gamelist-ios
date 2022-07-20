@@ -20,13 +20,6 @@ struct LoginPage : View {
         
             VStack {
                 
-                Text(vm.jwt_token)
-                    .foregroundColor(.blue)
-                    .fontWeight(.semibold)
-                    .onTapGesture {
-                        vm.getData()
-                    }
-                
                 Text("PLACEHOLDER TEXT: IMAGE GOES HERE")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -48,9 +41,13 @@ struct LoginPage : View {
                     .padding(.bottom, 20)
                 
                 HStack{
-                    Button(action: {loginLogic(username: username, password: password)}) {
-                                   LoginButton()
-                                }
+                    Button(action: {
+                        vm.setInfo(username: username, password: password)
+                        vm.getData()
+                        // need to add code that does a check for login
+                    }) {
+                        LoginButton()
+                    }
                     NavigationLink(destination: RegisterPage(), label: {
                         RegisterButton()
                     })
@@ -65,15 +62,6 @@ struct LoginPage_Previews: PreviewProvider {
     static var previews: some View {
         LoginPage()
     }
-}
-
-
-func loginLogic(username: String, password: String) {
-    
-    
-    
-    
-    
 }
 
 

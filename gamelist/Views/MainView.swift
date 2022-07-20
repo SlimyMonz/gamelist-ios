@@ -12,7 +12,11 @@ struct MainView: View {
     @ObservedObject var keyboardResponder = KeyboardResponder()
     @State var selected_tab = 2
     
+    @State var logged_in = false;
+    
     var body: some View {
+        
+        if (logged_in) {
         
         TabView (selection: $selected_tab){
             MyListPage()
@@ -30,8 +34,12 @@ struct MainView: View {
                     Label("Account", systemImage: "person.crop.circle")
                 } .tag(3)
         }
+        } else {
+            LoginPage()
+            }
+        }
     }
-}
+
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {

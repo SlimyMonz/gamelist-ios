@@ -41,11 +41,11 @@ struct login_Previews: PreviewProvider {
 
 class loginAPI: ObservableObject {
     
-    @Published var jwt_token: String = "null"
+    @Published var jwt_token: String = ""
     @Published var username: String = ""
     @Published var password: String = ""
     
-    @Published var id: String = "none"
+    @Published var id: String = ""
     @Published var verified: Bool = false
     
     func setInfo(username: String, password: String) {
@@ -96,7 +96,6 @@ class loginAPI: ObservableObject {
             }
             do {
                 let decodedData = try JSONDecoder().decode(JWT.self, from: data)
-                self.jwt_token = decodedData.token
                 let payload = decode_jwt(jwt: self.jwt_token)
                 completion(decodedData.token, payload!)
             } catch {
@@ -107,18 +106,8 @@ class loginAPI: ObservableObject {
     
 }
 
-
 typealias decode_alias = (String, USER) -> Void
 
-struct JWT: Decodable
-{
-    let token: String
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case token = "token"
-    }
-}
 
 
 

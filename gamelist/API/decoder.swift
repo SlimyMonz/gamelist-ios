@@ -47,6 +47,16 @@ func decode_JSON(json: Data) -> USER
     }
 }
 
+struct JWT: Decodable
+{
+    let token: String
+    
+    enum CodingKeys: String, CodingKey
+    {
+        case token = "token"
+    }
+}
+
 struct JSON: Decodable
 {
     let user: [USER]
