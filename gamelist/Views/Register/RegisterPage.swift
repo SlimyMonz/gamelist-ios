@@ -18,6 +18,10 @@ struct RegisterPage : View {
     @State var password: String = ""
     @State var confirm_password: String = ""
     
+    @StateObject var reg = registerAPI()
+    
+    
+    
     var body: some View {
         
         VStack () {

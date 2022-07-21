@@ -36,17 +36,16 @@ struct MainView: View {
                     } .tag(3)
             }
         } else {
-            VStack{
-                Text("Click to fake login").onTapGesture {
-                    dmv.verified = true
-                }
+            
+            if (dmv.register_page) {
+                RegisterPage()
+            } else {
                 LoginPage()
             }
         }
-            
     }
-        
 }
+
 
 
 struct MainView_Previews: PreviewProvider {

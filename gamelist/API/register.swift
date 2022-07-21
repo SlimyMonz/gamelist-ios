@@ -1,17 +1,17 @@
 //
-//  login.swift
+//  register.swift
 //  gamelist
 //
-//  Created by Harry Hocker on 7/13/22.
+//  Created by Harry Hocker on 7/21/22.
 //
 
 import UIKit
 import Foundation
 import SwiftUI
 
-struct login: View {
+struct register: View {
     
-    @StateObject var vm = loginAPI()
+    @StateObject var vm = registerAPI()
     @ObservedObject var dvm = Mem.dm
     
     @State var jwt_token: String = "empty"
@@ -20,45 +20,66 @@ struct login: View {
     
     var body: some View {
         VStack{
-            Text(dvm.token)
+            Text("press to register")
             .foregroundColor(.blue)
             .fontWeight(.semibold)
             .onTapGesture {
-                vm.setInfo(username: "monz", password: "password")
-                vm.getData()
+                vm.setInfo(
+                    user: "monz",
+                    pass: "empty",
+                    confirm: "empty",
+                    first: "Harry",
+                    last: "Hocker",
+                    email: "harry_hocker@icloud.com"
+                )
+                vm.sendData()
             }
         }
     }
 }
 
-struct login_Previews: PreviewProvider {
+struct register_Previews: PreviewProvider {
     static var previews: some View {
-        login()
+        register()
     }
 }
 
 
-class loginAPI: ObservableObject {
+class registerAPI: ObservableObject {
     
     @Published var username: String = "no user"
     @Published var password: String = ""
+    @Published var confirm_pass: String = ""
+    @Published var first_name: String = ""
+    @Published var last_name: String = ""
+    @Published var email: String = ""
     
     @ObservedObject var dmv = Mem.dm
     
-    func setInfo(username: String, password: String) {
-        self.username = username
-        self.password = password
+    func setInfo(
+        user: String,
+        pass: String,
+        confirm: String,
+        first: String,
+        last: String,
+        email: String
+    ) {
+        self.username = user
+        self.password = pass
+        self.confirm_pass = confirm
+        self.first_name = first
+        self.last_name = last
+        self.email = email
     }
     
-    func getData() {
-        getJWT { [weak self](token, user) in
-            self?.dmv.token = token
-            self?.dmv.id = user.id
-            self?.dmv.verified = user.verified
+    func sendData() {
+        getJWT { [weak self](response) in
+            // most likely change the response thingy here
+            if (response != "200") {self?.dmv.registered = true}
         }
     }
     
-    func getJWT(completion: @escaping decode_alias) {
+    func getJWT(completion: @escaping (String) -> Void) {
         
         guard
             let url = URL(string: Constant.base_url + Constant.login_url)
@@ -94,23 +115,10 @@ class loginAPI: ObservableObject {
             do {
                 let decodedData = try JSONDecoder().decode(JWT.self, from: data)
                 let payload = decode_jwt(jwt: decodedData.token)
-                completion(decodedData.token, payload!)
+                completion(decodedData.token)
             } catch {
 
             }
         }.resume()
     }
-    
 }
-
-typealias decode_alias = (String, USER) -> Void
-
-
-
-
-
-
-
-
-
-

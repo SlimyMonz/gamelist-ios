@@ -14,6 +14,7 @@ struct LoginPage : View {
     
     @StateObject var vm = loginAPI()
     
+    @ObservedObject var dmv = Mem.dm
     @ObservedObject var keyboardResponder = KeyboardResponder()
     
     var body: some View {
@@ -47,9 +48,11 @@ struct LoginPage : View {
                     }) {
                         LoginButton()
                     }
-                    NavigationLink(destination: RegisterPage(), label: {
+                    Button(action: {
+                        dmv.register_page = true
+                    }){
                         RegisterButton()
-                    })
+                    }
                 }.padding()
             }.navigationTitle(Text("Login")).padding().navigationBarTitleDisplayMode(.automatic).offset(y: keyboardResponder.currentHeight * 0.1)
     }
