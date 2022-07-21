@@ -53,9 +53,9 @@ class loginAPI: ObservableObject {
     func getData() {
         getJWT { (token, user) in
             let defaults = UserDefaults.standard
-            defaults.set(token, forKey: "token")
-            defaults.set(user.id, forKey: "id")
-            defaults.set(user.verified, forKey: "verified")
+            defaults.set(token, forKey: DK.token)
+            defaults.set(user.id, forKey: DK.id)
+            defaults.set(user.verified, forKey: DK.verified)
         }
     }
     
