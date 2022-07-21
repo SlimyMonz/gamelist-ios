@@ -13,21 +13,22 @@ struct login: View {
     
     @StateObject var vm = loginAPI()
     
-    @State var name = "nothing"
+    @State var jwt_token: String = "empty"
+    @State var username: String = ""
+    @State var password: String = ""
+    
+    let defaults = UserDefaults.standard
     
     var body: some View {
         VStack{
-        Text(vm.jwt_token)
+        Text(vm.username)
             .foregroundColor(.blue)
             .fontWeight(.semibold)
             .onTapGesture {
                 vm.setInfo(username: "monz", password: "password")
                 vm.getData()
-                name = vm.username
             }
-        Text(name)
-        Text(vm.id)
-            Text(vm.verified.description)
+
         }
     }
 }
@@ -41,12 +42,8 @@ struct login_Previews: PreviewProvider {
 
 class loginAPI: ObservableObject {
     
-    @Published var jwt_token: String = ""
-    @Published var username: String = ""
+    @Published var username: String = "no user"
     @Published var password: String = ""
-    
-    @Published var id: String = ""
-    @Published var verified: Bool = false
     
     func setInfo(username: String, password: String) {
         self.username = username
@@ -55,9 +52,10 @@ class loginAPI: ObservableObject {
     
     func getData() {
         getJWT { (token, user) in
-            self.jwt_token = token
-            self.id = user.id
-            self.verified = user.verified
+            let defaults = UserDefaults.standard
+            defaults.set(token, forKey: "token")
+            defaults.set(user.id, forKey: "id")
+            defaults.set(user.verified, forKey: "verified")
         }
     }
     
@@ -96,7 +94,7 @@ class loginAPI: ObservableObject {
             }
             do {
                 let decodedData = try JSONDecoder().decode(JWT.self, from: data)
-                let payload = decode_jwt(jwt: self.jwt_token)
+                let payload = decode_jwt(jwt: decodedData.token)
                 completion(decodedData.token, payload!)
             } catch {
 

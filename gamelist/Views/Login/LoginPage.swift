@@ -44,7 +44,6 @@ struct LoginPage : View {
                     Button(action: {
                         vm.setInfo(username: username, password: password)
                         vm.getData()
-                        // need to add code that does a check for login
                     }) {
                         LoginButton()
                     }
