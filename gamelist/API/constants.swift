@@ -10,7 +10,7 @@ import Foundation
 enum Constant {
      static let base_url = "https://my-game-list-front.herokuapp.com/"
      static let login_url = "api/users/login/"
-    
+    static let register_url = "api/users/register/"
      
      
 }

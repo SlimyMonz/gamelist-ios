@@ -73,52 +73,45 @@ class registerAPI: ObservableObject {
     }
     
     func sendData() {
-        getJWT { [weak self](response) in
+        sendRegister { [weak self](response) in
             // most likely change the response thingy here
             if (response != "200") {self?.dmv.registered = true}
         }
     }
     
-    func getJWT(completion: @escaping (String) -> Void) {
+    func sendRegister(completion: @escaping (String) -> Void) {
         
         guard
-            let url = URL(string: Constant.base_url + Constant.login_url)
+            let url = URL(string: Constant.base_url + Constant.register_url)
         else {
-
             return
         }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // add token to request in here somewhere
 
         let body = ["userName": username, "password": password]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        URLSession.shared.dataTask(with: request) { _, response, error in
             guard
             let httpResponse = response as? HTTPURLResponse,
             httpResponse.statusCode == 200
             else {
+                completion("no http response")
                 return
             }
             guard
                 error == nil
             else {
+                completion("error")
                 return
             }
-            guard
-                let data = data
-            else {
-                return
-            }
-            do {
-                let decodedData = try JSONDecoder().decode(JWT.self, from: data)
-                let payload = decode_jwt(jwt: decodedData.token)
-                completion(decodedData.token)
-            } catch {
-
-            }
+            completion(httpResponse.description)
+            
         }.resume()
     }
 }
