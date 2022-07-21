@@ -10,15 +10,17 @@ import SwiftUI
 
 let defaults = UserDefaults.standard
 
-struct DK {
-    
+struct DK
+{
     static let username = "username"
     static let id = "id"
     static let token = "token"
     static let verified = "verified"
-
 }
 
+struct Mem {
+    static let dm = DataMemory()
+}
 
 
 class DataMemory: ObservableObject {
@@ -30,6 +32,9 @@ class DataMemory: ObservableObject {
     @Published var token = ""
     @Published var verified = false
     
+    @Published var firstName = ""
+    @Published var lastName = ""
+    
     init() {
         if let id = defaults.string(forKey: DK.id) {
             self.id = id
@@ -37,12 +42,7 @@ class DataMemory: ObservableObject {
         if let token = defaults.string(forKey: DK.token) {
             self.token = token
         }
-        
-        self.verified = defaults.bool(forKey: DK.verified)
-        
+        self.verified = false
     }
-    
-    
-    
 }
 

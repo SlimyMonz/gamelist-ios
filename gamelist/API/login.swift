@@ -28,7 +28,6 @@ struct login: View {
                 vm.setInfo(username: "monz", password: "password")
                 vm.getData()
             }
-
         }
     }
 }
@@ -45,17 +44,18 @@ class loginAPI: ObservableObject {
     @Published var username: String = "no user"
     @Published var password: String = ""
     
+    @ObservedObject var dmv = Mem.dm
+    
     func setInfo(username: String, password: String) {
         self.username = username
         self.password = password
     }
     
     func getData() {
-        getJWT { (token, user) in
-            let defaults = UserDefaults.standard
-            defaults.set(token, forKey: DK.token)
-            defaults.set(user.id, forKey: DK.id)
-            defaults.set(user.verified, forKey: DK.verified)
+        getJWT { [weak self](token, user) in
+            self?.dmv.token = token
+            self?.dmv.id = user.id
+            self?.dmv.verified = user.verified
         }
     }
     

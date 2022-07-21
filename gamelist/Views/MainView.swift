@@ -9,36 +9,44 @@ import SwiftUI
 
 struct MainView: View {
     
-    @ObservedObject var keyboardResponder = KeyboardResponder()
-    @State var selected_tab = 2
+    @ObservedObject var dmv = Mem.dm
     
-    @State var logged_in = false;
+    @ObservedObject var keyboardResponder = KeyboardResponder()
+    
+    @State var selected_tab = 2
     
     var body: some View {
         
-        if (logged_in) {
-        
-        TabView (selection: $selected_tab){
-            MyListPage()
-                .tabItem {
-                    Label("My List", systemImage: "list.bullet")
-                } .tag(1)
+        if (dmv.verified) {
             
-            HomePage()
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                    
-                } .tag(2)
-            AccountPage()
-                .tabItem {
-                    Label("Account", systemImage: "person.crop.circle")
-                } .tag(3)
-        }
+            TabView (selection: $selected_tab){
+                MyListPage()
+                    .tabItem {
+                        Label("My List", systemImage: "list.bullet")
+                    } .tag(1)
+                
+                HomePage()
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                        
+                    } .tag(2)
+                AccountPage()
+                    .tabItem {
+                        Label("Account", systemImage: "person.crop.circle")
+                    } .tag(3)
+            }
         } else {
-            LoginPage()
+            VStack{
+                Text("Click to fake login").onTapGesture {
+                    dmv.verified = true
+                }
+                LoginPage()
             }
         }
+            
     }
+        
+}
 
 
 struct MainView_Previews: PreviewProvider {

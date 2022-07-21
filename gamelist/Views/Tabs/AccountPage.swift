@@ -9,11 +9,22 @@ import SwiftUI
 
 struct AccountPage: View {
     
+    @ObservedObject var dvm = Mem.dm
+    
     var body: some View {
         
-            
+        
+        if (dvm.verified) {
+            // run code to grab user info like name etc
+        }
+        
         NavigationView {
-            LoginPage()
+            VStack {
+                Text(dvm.username)
+                Text(dvm.firstName)
+                Text(dvm.lastName)
+                Text(dvm.id)
+            }
         }
                 
         
