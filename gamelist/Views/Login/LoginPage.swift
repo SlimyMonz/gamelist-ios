@@ -32,6 +32,8 @@ struct LoginPage : View {
                     .background(lightGreyColor)
                     .cornerRadius(5.0)
                     .padding(.bottom, 20)
+                    .disableAutocorrection(true)
+                    .autocapitalization(.none)
                 SecureField("Password", text: $password)
                     .padding()
                     .background(lightGreyColor)
@@ -55,7 +57,7 @@ struct LoginPage : View {
                     
                 }.padding()
             }.navigationTitle(Text("Login")).padding().navigationBarTitleDisplayMode(.automatic).offset(y: keyboardResponder.currentHeight * 0.1)
-        }.navigationTitle("Login")
+        }
     }
     
 }
@@ -94,12 +96,13 @@ struct RegisterButton: View {
 
 struct WelcomeImage: View {
     var body: some View {
-        Text("PLACEHOLDER TEXT: IMAGE GOES HERE")
-            .font(.largeTitle)
-            .fontWeight(.bold)
-            .multilineTextAlignment(.center)
+        
+        Image("mygamelist-icon")
+            .resizable()
             .padding()
-            .padding(.bottom, 50.0)
+            
+        
+        
         
     }
 }

@@ -24,6 +24,9 @@ struct AccountPage: View {
                 Text(dvm.firstName)
                 Text(dvm.lastName)
                 Text(dvm.id)
+                
+                Text("Logout")
+                    .onTapGesture{dvm.verified = false}
             }
         }
                 

@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct HomePage: View {
+    
     var body: some View {
         WebView()
+        
+        
     }
 }
 

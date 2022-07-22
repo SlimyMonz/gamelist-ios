@@ -11,7 +11,7 @@ import Foundation
 
 struct WebView: UIViewRepresentable {
     
-    let url = URL(string: "https://my-game-list-front.herokuapp.com/games")
+    let url = URL(string: "https://my-game-list-front.herokuapp.com/")
     
     func makeUIView(context: Context) -> some UIView {
         

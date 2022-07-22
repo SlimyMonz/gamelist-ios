@@ -36,8 +36,7 @@ struct MainView: View {
                     } .tag(3)
             }
         } else {
-                LoginPage()
-            
+            LoginPage()
         }
     }
 }
