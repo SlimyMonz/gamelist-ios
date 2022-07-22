@@ -27,9 +27,11 @@ struct AccountPage: View {
                 
                 Text("Logout")
                     .onTapGesture{dvm.verified = false}
+                    .foregroundColor(.red)
+                    .padding()
+                
             }
         }
-                
         
     }
 }
@@ -39,3 +41,5 @@ struct AccountPage_Previews: PreviewProvider {
         AccountPage()
     }
 }
+
+

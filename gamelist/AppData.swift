@@ -13,6 +13,7 @@ let defaults = UserDefaults.standard
 struct DK
 {
     static let username = "username"
+    static let password = "password"
     static let id = "id"
     static let token = "token"
     static let verified = "verified"
@@ -38,12 +39,18 @@ class DataMemory: ObservableObject {
     @Published var lastName = ""
     
     init() {
-        if let id = defaults.string(forKey: DK.id) {
-            self.id = id
+        
+        if let username = defaults.string(forKey: DK.username) {
+            self.username = username
         }
-        if let token = defaults.string(forKey: DK.token) {
-            self.token = token
+        if let password = defaults.string(forKey: DK.password) {
+            self.password = password
         }
+        
+        if (!username.isEmpty && !password.isEmpty) {
+            // do auto login stuff here
+        }
+        
         self.verified = false
     }
 }

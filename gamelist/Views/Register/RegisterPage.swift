@@ -41,18 +41,13 @@ struct RegisterPage : View {
                     TextField("Email", text: $email)
                 }
                 
-                if (dmv.registered && reg_pressed) {
-                    Text("Check your email to finish registration!")
-                        .foregroundColor(.green)
-                } else if (reg_pressed && !dmv.registered){
-                    Text("Invalid.")
-                        .foregroundColor(.red)
-                }
+                // add text here for confirmation or error message
+                
             }
             
             Button(action: {
-                print("Button tapped " + password)
-                reg_pressed = true
+                reg.setInfo(user: username, pass: password, first: first_name, last: last_name, email: email)
+                reg.sendData()
             }) {
                 DoRegisterButton()
             }

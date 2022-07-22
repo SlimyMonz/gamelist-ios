@@ -18,6 +18,11 @@ struct register: View {
     @State var username: String = ""
     @State var password: String = ""
     
+    @State var buttonPressed = ""
+    @State var errorText = ""
+    
+    let checkEmail = "Check your email!"
+    
     var body: some View {
         VStack{
             Text("press to register")
@@ -25,15 +30,21 @@ struct register: View {
             .fontWeight(.semibold)
             .onTapGesture {
                 vm.setInfo(
-                    user: "monz",
+                    user: "empty",
                     pass: "empty",
-                    confirm: "empty",
-                    first: "Harry",
-                    last: "Hocker",
-                    email: "harry_hocker@icloud.com"
+                    first: "empty",
+                    last: "empty",
+                    email: "no"
                 )
+                self.buttonPressed = checkEmail
                 vm.sendData()
+                self.errorText = vm.error
             }
+            Text(buttonPressed)
+                .foregroundColor(.green)
+            Text(errorText)
+                .foregroundColor(.red)
+                
         }
     }
 }
@@ -49,24 +60,23 @@ class registerAPI: ObservableObject {
     
     @Published var username: String = "no user"
     @Published var password: String = ""
-    @Published var confirm_pass: String = ""
     @Published var first_name: String = ""
     @Published var last_name: String = ""
     @Published var email: String = ""
+
+    @Published var error = ""
     
     @ObservedObject var dmv = Mem.dm
     
     func setInfo(
         user: String,
         pass: String,
-        confirm: String,
         first: String,
         last: String,
         email: String
     ) {
         self.username = user
         self.password = pass
-        self.confirm_pass = confirm
         self.first_name = first
         self.last_name = last
         self.email = email
@@ -75,7 +85,8 @@ class registerAPI: ObservableObject {
     func sendData() {
         sendRegister { (response) in
             // most likely change the response thingy here
-            if (response != "200") {self.dmv.registered = true}
+            if (response == "200") {self.dmv.registered = true}
+            self.error = response
         }
     }
     
@@ -93,7 +104,14 @@ class registerAPI: ObservableObject {
         
         // add token to request in here somewhere
 
-        let body = ["userName": username, "password": password]
+        let body = [
+            "userName": username,
+            "password": password,
+            "firstName": first_name,
+            "lastName": last_name,
+            "email": email
+        ]
+            
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
         URLSession.shared.dataTask(with: request) { _, response, error in
