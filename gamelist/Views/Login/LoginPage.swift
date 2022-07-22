@@ -100,10 +100,7 @@ struct WelcomeImage: View {
         Image("mygamelist-icon")
             .resizable()
             .padding()
-            
-        
-        
-        
+            .scaledToFill()
     }
 }
 

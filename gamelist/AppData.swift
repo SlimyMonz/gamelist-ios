@@ -19,9 +19,11 @@ struct DK
     static let verified = "verified"
 }
 
+
 struct Mem {
     static let dm = DataMemory()
 }
+
 
 
 class DataMemory: ObservableObject {
