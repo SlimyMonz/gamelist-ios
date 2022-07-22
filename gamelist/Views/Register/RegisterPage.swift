@@ -20,12 +20,14 @@ struct RegisterPage : View {
     
     @StateObject var reg = registerAPI()
     
+    @ObservedObject var dmv = Mem.dm
     
+    @State var reg_pressed = false
     
     var body: some View {
         
         VStack () {
-            
+
             Form {
                 Section(header: Text("PROFILE")) {
                     TextField("Username", text: $username)
@@ -38,13 +40,20 @@ struct RegisterPage : View {
                     TextField("Last Name", text: $last_name)
                     TextField("Email", text: $email)
                 }
-            
                 
+                if (dmv.registered && reg_pressed) {
+                    Text("Check your email to finish registration!")
+                        .foregroundColor(.green)
+                } else if (reg_pressed && !dmv.registered){
+                    Text("Invalid.")
+                        .foregroundColor(.red)
+                }
             }
             
-            
-            
-            Button(action: {print("Button tapped " + password)}) {
+            Button(action: {
+                print("Button tapped " + password)
+                reg_pressed = true
+            }) {
                 DoRegisterButton()
             }
         }

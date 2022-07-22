@@ -19,14 +19,11 @@ struct LoginPage : View {
     
     var body: some View {
         
+        NavigationView {
+        
             VStack {
                 
-                Text("PLACEHOLDER TEXT: IMAGE GOES HERE")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                    .padding(.bottom, 50.0)
+                WelcomeImage()
                 
                 // replace the text with an image
                     
@@ -41,20 +38,24 @@ struct LoginPage : View {
                     .cornerRadius(5.0)
                     .padding(.bottom, 20)
                 
-                HStack{
+                HStack {
                     Button(action: {
                         vm.setInfo(username: username, password: password)
                         vm.getData()
                     }) {
                         LoginButton()
                     }
-                    Button(action: {
-                        dmv.register_page = true
-                    }){
+                    
+                    NavigationLink {
+                        RegisterPage()
+                    } label: {
                         RegisterButton()
                     }
+            
+                    
                 }.padding()
             }.navigationTitle(Text("Login")).padding().navigationBarTitleDisplayMode(.automatic).offset(y: keyboardResponder.currentHeight * 0.1)
+        }.navigationTitle("Login")
     }
     
 }
@@ -91,6 +92,17 @@ struct RegisterButton: View {
     }
 }
 
+struct WelcomeImage: View {
+    var body: some View {
+        Text("PLACEHOLDER TEXT: IMAGE GOES HERE")
+            .font(.largeTitle)
+            .fontWeight(.bold)
+            .multilineTextAlignment(.center)
+            .padding()
+            .padding(.bottom, 50.0)
+        
+    }
+}
 
 
 

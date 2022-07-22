@@ -73,9 +73,9 @@ class registerAPI: ObservableObject {
     }
     
     func sendData() {
-        sendRegister { [weak self](response) in
+        sendRegister { (response) in
             // most likely change the response thingy here
-            if (response != "200") {self?.dmv.registered = true}
+            if (response != "200") {self.dmv.registered = true}
         }
     }
     

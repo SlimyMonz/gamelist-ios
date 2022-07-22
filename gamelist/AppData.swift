@@ -32,8 +32,7 @@ class DataMemory: ObservableObject {
     @Published var token = ""
     
     @Published var verified = false
-    @Published var register_page = false
-    @Published var registered = true
+    @Published var registered = false
     
     @Published var firstName = ""
     @Published var lastName = ""

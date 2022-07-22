@@ -36,12 +36,8 @@ struct MainView: View {
                     } .tag(3)
             }
         } else {
-            
-            if (dmv.register_page) {
-                RegisterPage()
-            } else {
                 LoginPage()
-            }
+            
         }
     }
 }
