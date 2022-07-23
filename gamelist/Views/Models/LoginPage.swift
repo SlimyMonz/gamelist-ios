@@ -31,14 +31,14 @@ struct LoginPage : View {
                     .padding()
                     .background(lightGreyColor)
                     .cornerRadius(5.0)
-                    .padding(.bottom, 20)
+                    .padding(.bottom)
                     .disableAutocorrection(true)
                     .autocapitalization(.none)
                 SecureField("Password", text: $password)
                     .padding()
                     .background(lightGreyColor)
                     .cornerRadius(5.0)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 50)
                 
                 HStack {
                     Button(action: {
@@ -53,13 +53,12 @@ struct LoginPage : View {
                     } label: {
                         RegisterButton()
                     }
-            
                     
-                }.padding()
-            }.navigationTitle(Text("Login")).padding().navigationBarTitleDisplayMode(.automatic).offset(y: keyboardResponder.currentHeight * 0.1)
+                }
+                .padding(.bottom, 100)
+            }.navigationTitle(Text("Login")).padding().navigationBarTitleDisplayMode(.automatic).offset(y: keyboardResponder.currentHeight * 0.2)
         }
     }
-    
 }
 
 
@@ -99,7 +98,7 @@ struct WelcomeImage: View {
         
         Image("mygamelist-icon")
             .resizable()
-            .padding()
+
             .scaledToFill()
     }
 }

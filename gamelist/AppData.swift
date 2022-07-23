@@ -40,6 +40,7 @@ class DataMemory: ObservableObject {
     @Published var firstName = ""
     @Published var lastName = ""
     
+    
     init() {
         
         if let username = defaults.string(forKey: DK.username) {
