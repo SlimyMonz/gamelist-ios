@@ -11,12 +11,8 @@ import SwiftUI
 
 struct search: View {
     
-    @StateObject var vm = loginAPI()
+    @StateObject var vm = searchAPI()
     @ObservedObject var dvm = Mem.dm
-    
-    @State var jwt_token: String = "empty"
-    @State var username: String = ""
-    @State var password: String = ""
     
     var body: some View {
         VStack{
@@ -24,8 +20,8 @@ struct search: View {
             .foregroundColor(.blue)
             .fontWeight(.semibold)
             .onTapGesture {
-                vm.setInfo(username: "monz", password: "password")
-                vm.getData()
+                vm.setPlatform(platform: "Xbox One")
+                vm.doSearch()
             }
         }
     }
@@ -40,22 +36,20 @@ struct search_Previews: PreviewProvider {
 
 class searchAPI: ObservableObject {
     
-    @State var getUserList = false
-    
+    @State var platform = ""
     @ObservedObject var dmv = Mem.dm
     
-    func getList() {
-        getUserList = true
-        doSearch()
+    func setPlatform(platform: String) {
+        self.platform = platform
     }
     
     func doSearch() {
-        getJWT { [weak self](user_list) in
-            
+        getGameList { [self](list) in
+            self.dmv.searchList = list
         }
     }
     
-    func getJWT(completion: @escaping search_alias) {
+    func getGameList(completion: @escaping search_alias) {
         
         guard
             let url = URL(string: Constant.base_url + Constant.login_url)
@@ -68,11 +62,9 @@ class searchAPI: ObservableObject {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         // authenticate only if we need the user's specific list
-        if (self.getUserList) {
-            request.addValue("Bearer " + dmv.token, forHTTPHeaderField: "Authentication")
-        }
+        
 
-        let body = ["_id" : dmv.id]
+        let body = ["platform" : "[" + self.platform + "]"]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
         
@@ -94,7 +86,7 @@ class searchAPI: ObservableObject {
                 return
             }
             do {
-                let decodedData = try JSONDecoder().decode(JWT.self, from: data)
+                let decodedData = try JSONDecoder().decode(GAMELIST.self, from: data)
                 completion(decodedData)
             } catch {
 
@@ -104,5 +96,32 @@ class searchAPI: ObservableObject {
     
 }
 
-typealias search_alias = (JWT) -> Void
+typealias search_alias = (GAMELIST) -> Void
 
+struct GAMELIST: Decodable
+{
+    let list: [GAME]
+    
+    enum CodingKeys: String, CodingKey
+    {
+        case list = "games"
+    }
+    
+}
+
+
+struct GAME: Decodable
+{
+    let id: String
+    let name: String
+    let description: String
+    let cover: String
+    
+    enum CodingKeys: String, CodingKey
+    {
+        case id = "id"
+        case name = "name"
+        case description = "description"
+        case cover = "cover"
+    }
+}

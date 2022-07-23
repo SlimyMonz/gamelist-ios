@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		755037EF288CB9240052B8EC /* userList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755037EE288CB9240052B8EC /* userList.swift */; };
 		75552E3C28766C0E0016CC6A /* gamelistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75552E3B28766C0E0016CC6A /* gamelistApp.swift */; };
 		75552E3E28766C0E0016CC6A /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75552E3D28766C0E0016CC6A /* LoginPage.swift */; };
 		75552E4028766C0E0016CC6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75552E3F28766C0E0016CC6A /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		755037EE288CB9240052B8EC /* userList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userList.swift; sourceTree = "<group>"; };
 		75552E3828766C0E0016CC6A /* gamelist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gamelist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75552E3B28766C0E0016CC6A /* gamelistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamelistApp.swift; sourceTree = "<group>"; };
 		75552E3D28766C0E0016CC6A /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				7558343E2885E06D00063C0E /* constants.swift */,
 				7558149A2889EE2400459152 /* register.swift */,
 				7558149C288B0F0B00459152 /* search.swift */,
+				755037EE288CB9240052B8EC /* userList.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				75F65EE4287FA470000FBA8F /* MyListPage.swift in Sources */,
 				75F65EE0287FA29E000FBA8F /* AccountPage.swift in Sources */,
 				75FB1BDC287F4FB500033702 /* RegisterPage.swift in Sources */,
+				755037EF288CB9240052B8EC /* userList.swift in Sources */,
 				75FB1BE5287F851F00033702 /* WebView.swift in Sources */,
 				75552E3E28766C0E0016CC6A /* LoginPage.swift in Sources */,
 				75F65EE2287FA3E0000FBA8F /* HomePage.swift in Sources */,
