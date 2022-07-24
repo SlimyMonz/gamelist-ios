@@ -14,15 +14,24 @@ struct search: View {
     @StateObject var vm = searchAPI()
     @ObservedObject var dvm = Mem.dm
     
+    @State var error = "no error"
+    
     var body: some View {
+        
+        
         VStack{
-            Text(dvm.token)
+            
+            Text("Tap to search.")
             .foregroundColor(.blue)
             .fontWeight(.semibold)
             .onTapGesture {
                 vm.setPlatform(platform: "Xbox One")
                 vm.doSearch()
             }
+            ScrollView{
+                Text(dvm.searchList.description)
+            }
+                Text(vm.platform)
         }
     }
 }
@@ -36,7 +45,8 @@ struct search_Previews: PreviewProvider {
 
 class searchAPI: ObservableObject {
     
-    @State var platform = ""
+    @Published var error = ""
+    @Published var platform = ""
     @ObservedObject var dmv = Mem.dm
     
     func setPlatform(platform: String) {
@@ -45,28 +55,28 @@ class searchAPI: ObservableObject {
     
     func doSearch() {
         getGameList { [self](list) in
-            self.dmv.searchList = list
+            self.dmv.searchList.append(contentsOf: list)
         }
     }
     
     func getGameList(completion: @escaping search_alias) {
         
         guard
-            let url = URL(string: Constant.base_url + Constant.login_url)
+            let url = URL(string: Constant.base_url + Constant.game_url)
         else {
 
             return
         }
         
         var request = URLRequest(url: url)
+        
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         // authenticate only if we need the user's specific list
         
 
-        let body = ["platform" : "[" + self.platform + "]"]
+        let body = ["platform" : [self.platform ]]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
-        
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard
@@ -86,28 +96,19 @@ class searchAPI: ObservableObject {
                 return
             }
             do {
-                let decodedData = try JSONDecoder().decode(GAMELIST.self, from: data)
-                completion(decodedData)
+                let decodedData = try JSONDecoder().decode([GAME].self, from: data)
+                    completion(decodedData)
             } catch {
-
+                
             }
         }.resume()
     }
     
 }
 
-typealias search_alias = (GAMELIST) -> Void
+typealias search_alias = ([GAME]) -> Void
 
-struct GAMELIST: Decodable
-{
-    let list: [GAME]
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case list = "games"
-    }
-    
-}
+
 
 
 struct GAME: Decodable

@@ -40,8 +40,8 @@ class DataMemory: ObservableObject {
     @Published var firstName = ""
     @Published var lastName = ""
     
-    @Published var searchList: GAMELIST?
-    @Published var userList: GAMELIST?
+    @Published var searchList: [GAME] = []
+    @Published var userList: [GAME] = []
     
     init() {
         

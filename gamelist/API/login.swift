@@ -20,13 +20,14 @@ struct login: View {
     
     var body: some View {
         VStack{
-            Text(dvm.token)
+            Text("Click to login")
             .foregroundColor(.blue)
             .fontWeight(.semibold)
             .onTapGesture {
                 vm.setInfo(username: "monz", password: "password")
                 vm.getData()
             }
+            Text(dvm.token)
         }
     }
 }
