@@ -111,7 +111,7 @@ typealias search_alias = ([GAME]) -> Void
 
 
 
-struct GAME: Decodable
+struct GAME: Decodable, Identifiable
 {
     let id: String
     let name: String
