@@ -11,13 +11,12 @@ struct ListView: View {
     
     @ObservedObject var dmv = Mem.dm
     
-    @State var games = Mem.dm.userList
     
     var body: some View {
         
         NavigationView {
             
-            List(games) { game in
+            List(dmv.searchList) { game in
                 ListCell(name: game.name, description: game.description)
             }
             

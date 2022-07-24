@@ -19,10 +19,6 @@ struct ListCell: View {
                 Text(self.name)
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                Text(self.description)
-                    .lineLimit(2)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
             }
             
             

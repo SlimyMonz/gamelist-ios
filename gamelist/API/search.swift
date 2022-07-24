@@ -11,27 +11,22 @@ import SwiftUI
 
 struct search: View {
     
-    @StateObject var vm = searchAPI()
-    @ObservedObject var dvm = Mem.dm
-    
+    @StateObject var search = searchAPI()
     @State var error = "no error"
     
     var body: some View {
-        
-        
         VStack{
             
             Text("Tap to search.")
             .foregroundColor(.blue)
             .fontWeight(.semibold)
             .onTapGesture {
-                vm.setPlatform(platform: "Xbox One")
-                vm.doSearch()
+                search.setPlatform(platform: "Xbox One")
+                search.doSearch()
             }
-            ScrollView{
-                Text(dvm.searchList.description)
-            }
-                Text(vm.platform)
+            
+                ListView()
+            
         }
     }
 }
@@ -42,20 +37,30 @@ struct search_Previews: PreviewProvider {
     }
 }
 
-
 class searchAPI: ObservableObject {
     
     @Published var error = ""
     @Published var platform = ""
-    @ObservedObject var dmv = Mem.dm
+    @Published var isUserList = false
     
     func setPlatform(platform: String) {
         self.platform = platform
     }
     
-    func doSearch() {
-        getGameList { [self](list) in
-            self.dmv.searchList.append(contentsOf: list)
+    func setUserList() {
+        self.isUserList = true
+    }
+    
+    func doSearch()
+    {
+        getGameList { (list) in
+            if (self.isUserList) {
+                Mem.dm.userList.removeAll()
+                Mem.dm.userList.append(contentsOf: list)
+            } else {
+                Mem.dm.searchList.removeAll()
+                Mem.dm.searchList.append(contentsOf: list)
+            }
         }
     }
     
@@ -110,19 +115,3 @@ typealias search_alias = ([GAME]) -> Void
 
 
 
-
-struct GAME: Decodable, Identifiable
-{
-    let id: String
-    let name: String
-    let description: String
-    let cover: String
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case id = "id"
-        case name = "name"
-        case description = "description"
-        case cover = "cover"
-    }
-}
