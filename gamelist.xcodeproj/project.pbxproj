@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		755037EF288CB9240052B8EC /* userList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755037EE288CB9240052B8EC /* userList.swift */; };
+		755037F1288CDAEB0052B8EC /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755037F0288CDAEB0052B8EC /* ListView.swift */; };
 		75552E3C28766C0E0016CC6A /* gamelistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75552E3B28766C0E0016CC6A /* gamelistApp.swift */; };
-		75552E3E28766C0E0016CC6A /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75552E3D28766C0E0016CC6A /* LoginPage.swift */; };
+		75552E3E28766C0E0016CC6A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75552E3D28766C0E0016CC6A /* LoginView.swift */; };
 		75552E4028766C0E0016CC6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75552E3F28766C0E0016CC6A /* Assets.xcassets */; };
 		75552E4328766C0E0016CC6A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75552E4228766C0E0016CC6A /* Preview Assets.xcassets */; };
 		75552E4D28766C0E0016CC6A /* gamelistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75552E4C28766C0E0016CC6A /* gamelistTests.swift */; };
@@ -22,11 +23,12 @@
 		7558343F2885E06D00063C0E /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7558343E2885E06D00063C0E /* constants.swift */; };
 		75640D7B2888C61D003575D7 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75640D7A2888C61D003575D7 /* AppData.swift */; };
 		75C2F0F72880A32A00B4DDD6 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75C2F0F62880A32A00B4DDD6 /* Settings.bundle */; };
+		75C6AFBC288DB9460077FC56 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C6AFBB288DB9460077FC56 /* ListItem.swift */; };
 		75F65EE0287FA29E000FBA8F /* AccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F65EDF287FA29E000FBA8F /* AccountPage.swift */; };
 		75F65EE2287FA3E0000FBA8F /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F65EE1287FA3E0000FBA8F /* HomePage.swift */; };
 		75F65EE4287FA470000FBA8F /* MyListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F65EE3287FA470000FBA8F /* MyListPage.swift */; };
 		75FB1BDA287F4F1300033702 /* login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FB1BD9287F4F1300033702 /* login.swift */; };
-		75FB1BDC287F4FB500033702 /* RegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FB1BDB287F4FB500033702 /* RegisterPage.swift */; };
+		75FB1BDC287F4FB500033702 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FB1BDB287F4FB500033702 /* RegisterView.swift */; };
 		75FB1BDE287F7BF100033702 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FB1BDD287F7BF100033702 /* MainView.swift */; };
 		75FB1BE5287F851F00033702 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FB1BE4287F851F00033702 /* WebView.swift */; };
 /* End PBXBuildFile section */
@@ -50,9 +52,10 @@
 
 /* Begin PBXFileReference section */
 		755037EE288CB9240052B8EC /* userList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userList.swift; sourceTree = "<group>"; };
+		755037F0288CDAEB0052B8EC /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		75552E3828766C0E0016CC6A /* gamelist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gamelist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75552E3B28766C0E0016CC6A /* gamelistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamelistApp.swift; sourceTree = "<group>"; };
-		75552E3D28766C0E0016CC6A /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
+		75552E3D28766C0E0016CC6A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		75552E3F28766C0E0016CC6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75552E4228766C0E0016CC6A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		75552E4828766C0E0016CC6A /* gamelistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gamelistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,11 +70,12 @@
 		7558343E2885E06D00063C0E /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		75640D7A2888C61D003575D7 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		75C2F0F62880A32A00B4DDD6 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		75C6AFBB288DB9460077FC56 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		75F65EDF287FA29E000FBA8F /* AccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPage.swift; sourceTree = "<group>"; };
 		75F65EE1287FA3E0000FBA8F /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		75F65EE3287FA470000FBA8F /* MyListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListPage.swift; sourceTree = "<group>"; };
 		75FB1BD9287F4F1300033702 /* login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = login.swift; sourceTree = "<group>"; };
-		75FB1BDB287F4FB500033702 /* RegisterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPage.swift; sourceTree = "<group>"; };
+		75FB1BDB287F4FB500033702 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		75FB1BDD287F7BF100033702 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		75FB1BE4287F851F00033702 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,9 +108,11 @@
 		75070D67288C79030015C99F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				75552E3D28766C0E0016CC6A /* LoginPage.swift */,
-				75FB1BDB287F4FB500033702 /* RegisterPage.swift */,
+				755037F0288CDAEB0052B8EC /* ListView.swift */,
+				75552E3D28766C0E0016CC6A /* LoginView.swift */,
+				75FB1BDB287F4FB500033702 /* RegisterView.swift */,
 				75FB1BE4287F851F00033702 /* WebView.swift */,
+				75C6AFBB288DB9460077FC56 /* ListItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -338,14 +344,16 @@
 				75640D7B2888C61D003575D7 /* AppData.swift in Sources */,
 				75F65EE4287FA470000FBA8F /* MyListPage.swift in Sources */,
 				75F65EE0287FA29E000FBA8F /* AccountPage.swift in Sources */,
-				75FB1BDC287F4FB500033702 /* RegisterPage.swift in Sources */,
+				755037F1288CDAEB0052B8EC /* ListView.swift in Sources */,
+				75FB1BDC287F4FB500033702 /* RegisterView.swift in Sources */,
 				755037EF288CB9240052B8EC /* userList.swift in Sources */,
 				75FB1BE5287F851F00033702 /* WebView.swift in Sources */,
-				75552E3E28766C0E0016CC6A /* LoginPage.swift in Sources */,
+				75552E3E28766C0E0016CC6A /* LoginView.swift in Sources */,
 				75F65EE2287FA3E0000FBA8F /* HomePage.swift in Sources */,
 				75FB1BDE287F7BF100033702 /* MainView.swift in Sources */,
 				75552E3C28766C0E0016CC6A /* gamelistApp.swift in Sources */,
 				75552E6628766E750016CC6A /* KeyboardResponder.swift in Sources */,
+				75C6AFBC288DB9460077FC56 /* ListItem.swift in Sources */,
 				7558343D2885DE0300063C0E /* decoder.swift in Sources */,
 				75FB1BDA287F4F1300033702 /* login.swift in Sources */,
 				7558149D288B0F0B00459152 /* search.swift in Sources */,
