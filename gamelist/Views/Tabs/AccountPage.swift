@@ -11,12 +11,15 @@ struct AccountPage: View {
     
     @ObservedObject var dvm = Mem.dm
     
+    var bool = Mem.dm.verified {
+        didSet {
+            // run function to get user info
+        }
+    }
+    
     var body: some View {
         
         
-        if (dvm.verified) {
-            // run code to grab user info like name etc
-        }
         
         NavigationView {
             VStack {

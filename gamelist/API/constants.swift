@@ -13,6 +13,7 @@ enum Constant
     static let login_url = "api/users/login/"
     static let register_url = "api/users/register/"
     static let game_url = "api/games/searchAllGames"
+    static let userlist_url = "api/games/searchUser/"
 }
 
 struct GAME: Decodable, Identifiable
@@ -55,11 +56,13 @@ struct USER: Decodable
 {
     let id: String
     let verified: Bool
+    let username: String
     
     enum CodingKeys: String, CodingKey
     {
         case id = "_id"
         case verified = "verified"
+        case username = "userName"
     }
 }
 

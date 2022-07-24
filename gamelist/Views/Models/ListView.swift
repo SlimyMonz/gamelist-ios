@@ -11,6 +11,7 @@ struct ListView: View {
     
     @ObservedObject var dmv = Mem.dm
     
+    @State var title: String
     
     var body: some View {
         
@@ -20,7 +21,7 @@ struct ListView: View {
                 ListCell(name: game.name, description: game.description)
             }
             
-            .navigationTitle("My Game List")
+            .navigationBarTitle(title)
         }
         
         
@@ -31,7 +32,7 @@ struct ListView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView()
+        ListView(title: "Default Title")
     }
 }
 

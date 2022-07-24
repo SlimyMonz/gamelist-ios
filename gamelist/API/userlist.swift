@@ -1,17 +1,18 @@
 //
-//  search.swift
+//  userlist.swift
 //  gamelist
 //
-//  Created by Harry Hocker on 7/22/22.
+//  Created by Harry Hocker on 7/24/22.
 //
+
 
 import UIKit
 import Foundation
 import SwiftUI
 
-struct search: View {
+struct userlist: View {
     
-    @StateObject var search = searchAPI()
+    @StateObject var search = userlistAPI()
     
     var body: some View {
         VStack{
@@ -23,19 +24,19 @@ struct search: View {
                 search.setPlatform(platform: "Xbox One")
                 search.doSearch()
             }
-            ListView(title: "Search")
+            ListView(title: "User List")
             
         }
     }
 }
 
-struct search_Previews: PreviewProvider {
+struct userlist_Previews: PreviewProvider {
     static var previews: some View {
         search()
     }
 }
 
-class searchAPI: ObservableObject {
+class userlistAPI: ObservableObject {
     
     @Published var platform = ""
     
@@ -54,7 +55,7 @@ class searchAPI: ObservableObject {
     
     func getGameList(completion: @escaping search_alias) {
         
-        let url_string = Constant.base_url + Constant.game_url
+        let url_string = Constant.base_url + Constant.userlist_url
         
         guard
             let url = URL(string: url_string)
@@ -66,8 +67,9 @@ class searchAPI: ObservableObject {
         
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer " + Mem.dm.token, forHTTPHeaderField: "authentication")
     
-        let body = ["platform" : [self.platform]]
+        let body = ["_id" : Mem.dm.id]
         
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
@@ -96,10 +98,6 @@ class searchAPI: ObservableObject {
             }
         }.resume()
     }
-    
 }
-
-typealias search_alias = ([GAME]) -> Void
-
 
 

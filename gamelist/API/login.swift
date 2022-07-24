@@ -12,7 +12,6 @@ import SwiftUI
 struct login: View {
     
     @StateObject var vm = loginAPI()
-    @ObservedObject var dvm = Mem.dm
     
     @State var jwt_token: String = "empty"
     @State var username: String = ""
@@ -27,7 +26,9 @@ struct login: View {
                 vm.setInfo(username: Temp.username, password: Temp.password)
                 vm.getData()
             }
-            Text(dvm.token)
+            Text(Mem.dm.token)
+            Text(Mem.dm.username)
+            Text(Mem.dm.id)
         }
     }
 }
@@ -39,12 +40,12 @@ struct login_Previews: PreviewProvider {
 }
 
 
+
+
 class loginAPI: ObservableObject {
     
-    @Published var username: String = "no user"
+    @Published var username: String = ""
     @Published var password: String = ""
-    
-    @ObservedObject var dmv = Mem.dm
     
     func setInfo(username: String, password: String) {
         self.username = username
@@ -52,10 +53,11 @@ class loginAPI: ObservableObject {
     }
     
     func getData() {
-        getJWT { [weak self](token, user) in
-            self?.dmv.token = token
-            self?.dmv.id = user.id
-            self?.dmv.verified = user.verified
+        getJWT {(token, user) in
+            Mem.dm.token = token
+            Mem.dm.id = user.id
+            Mem.dm.verified = user.verified
+            Mem.dm.username = user.username
         }
     }
     
