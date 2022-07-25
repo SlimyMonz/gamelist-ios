@@ -13,9 +13,7 @@ struct MyListPage: View {
     
 
     var body: some View {
-        
-        
-        Text("This is where your list of games should be after logging in.")
+        ListView(title: "User List", isUserList: true)
     }
 }
 

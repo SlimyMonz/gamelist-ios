@@ -11,28 +11,31 @@ struct ListView: View {
     
     @ObservedObject var dmv = Mem.dm
     
-    @State var title: String
+    let title: String
+    var isUserList: Bool?
     
     var body: some View {
         
-        NavigationView {
+        if (isUserList ?? false) {
+            
+            List(dmv.userList) { game in
+                ListCell(game: game)
+            }
+            .navigationTitle(title)
+            
+        } else {
             
             List(dmv.searchList) { game in
-                ListCell(name: game.name, description: game.description)
+                ListCell(game: game)
             }
-            
-            .navigationBarTitle(title)
+            .navigationTitle(title)
         }
-        
-        
-        
-       
     }
 }
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView(title: "Default Title")
+        ListView(title: "Example Title")
     }
 }
 

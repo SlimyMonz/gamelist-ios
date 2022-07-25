@@ -18,13 +18,13 @@ struct userlist: View {
         VStack{
             
             Text("Tap to search.")
-            .foregroundColor(.blue)
-            .fontWeight(.semibold)
-            .onTapGesture {
-                search.setPlatform(platform: "Xbox One")
-                search.doSearch()
-            }
-            ListView(title: "User List")
+                .foregroundColor(.blue)
+                .fontWeight(.semibold)
+                .onTapGesture {
+                    search.setPlatform(platform: "Xbox One")
+                    search.doSearch()
+                }
+            ListView(title: "User List", isUserList: true)
             
         }
     }
@@ -32,7 +32,7 @@ struct userlist: View {
 
 struct userlist_Previews: PreviewProvider {
     static var previews: some View {
-        search()
+        userlist()
     }
 }
 
@@ -46,14 +46,13 @@ class userlistAPI: ObservableObject {
     
     func doSearch()
     {
-        getGameList { (list) in
-           
-                Mem.dm.searchList.removeAll()
-                Mem.dm.searchList.append(contentsOf: list)
+        getUserList { (list) in
+            Mem.dm.userList.removeAll()
+            Mem.dm.userList.append(contentsOf: list)
         }
     }
     
-    func getGameList(completion: @escaping search_alias) {
+    func getUserList(completion: @escaping userlist_alias) {
         
         let url_string = Constant.base_url + Constant.userlist_url
         
@@ -68,15 +67,15 @@ class userlistAPI: ObservableObject {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Bearer " + Mem.dm.token, forHTTPHeaderField: "authentication")
-    
+        
         let body = ["_id" : Mem.dm.id]
         
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard
-            let httpResponse = response as? HTTPURLResponse,
-            httpResponse.statusCode == 200
+                let httpResponse = response as? HTTPURLResponse,
+                httpResponse.statusCode == 200
             else {
                 return
             }
@@ -92,7 +91,7 @@ class userlistAPI: ObservableObject {
             }
             do {
                 let decodedData = try JSONDecoder().decode([GAME].self, from: data)
-                    completion(decodedData)
+                completion(decodedData)
             } catch {
                 
             }
@@ -101,3 +100,4 @@ class userlistAPI: ObservableObject {
 }
 
 
+typealias userlist_alias = ([GAME]) -> Void

@@ -43,20 +43,6 @@ class DataMemory: ObservableObject {
     @Published var searchList: [GAME] = []
     @Published var userList: [GAME] = []
     
-    init() {
-        
-        if let username = defaults.string(forKey: DK.username) {
-            self.username = username
-        }
-        if let password = defaults.string(forKey: DK.password) {
-            self.password = password
-        }
-        
-        if (!username.isEmpty && !password.isEmpty) {
-            // do auto login stuff here
-        }
-        
-        self.verified = false
-    }
+    
 }
 

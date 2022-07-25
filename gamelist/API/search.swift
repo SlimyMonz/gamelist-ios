@@ -9,7 +9,7 @@ import UIKit
 import Foundation
 import SwiftUI
 
-struct search: View {
+struct searchview: View {
     
     @StateObject var search = searchAPI()
     
@@ -20,18 +20,18 @@ struct search: View {
             .foregroundColor(.blue)
             .fontWeight(.semibold)
             .onTapGesture {
-                search.setPlatform(platform: "Xbox One")
+                search.setPlatform(platform: Constant.ps5)
                 search.doSearch()
             }
+
             ListView(title: "Search")
-            
         }
     }
 }
 
-struct search_Previews: PreviewProvider {
+struct searchview_Previews: PreviewProvider {
     static var previews: some View {
-        search()
+        searchview()
     }
 }
 
@@ -46,7 +46,6 @@ class searchAPI: ObservableObject {
     func doSearch()
     {
         getGameList { (list) in
-           
                 Mem.dm.searchList.removeAll()
                 Mem.dm.searchList.append(contentsOf: list)
         }

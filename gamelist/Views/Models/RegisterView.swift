@@ -24,6 +24,7 @@ struct RegisterPage : View {
     
     @State var reg_pressed = false
     
+    
     var body: some View {
         
         VStack () {
@@ -42,6 +43,7 @@ struct RegisterPage : View {
                 }
                 
                 // add text here for confirmation or error message
+                
                 
             }
             

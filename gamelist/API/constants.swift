@@ -14,14 +14,26 @@ enum Constant
     static let register_url = "api/users/register/"
     static let game_url = "api/games/searchAllGames"
     static let userlist_url = "api/games/searchUser/"
+    
+    static let xbone = "Xbox One X"
+    static let x360 = "Xbox 360"
+    static let ps5 = "PlayStation 5"
+    static let ps4 = "PlayStation 4"
+    static let ps3 = "PlayStation 3"
+    static let wii = "Wii"
+    static let ninswitch = "Nintendo Switch"
+    static let pc = "PC"
+    static let mobile = "Mobile"
 }
 
 struct GAME: Decodable, Identifiable
 {
     let id: String
-    let name: String
-    let description: String
-    let cover: String
+    let name: String?
+    let description: String?
+    let cover: String?
+    let rating: String?
+    let userRating: String?
     
     enum CodingKeys: String, CodingKey
     {
@@ -29,6 +41,8 @@ struct GAME: Decodable, Identifiable
         case name = "name"
         case description = "description"
         case cover = "cover"
+        case rating = "rating"
+        case userRating = "userRating"
     }
 }
 
@@ -65,5 +79,4 @@ struct USER: Decodable
         case username = "userName"
     }
 }
-
 
