@@ -13,7 +13,7 @@ struct MyListPage: View {
     
 
     var body: some View {
-        ListView(title: "User List", isUserList: true)
+        Text("Nothing here yet")
     }
 }
 

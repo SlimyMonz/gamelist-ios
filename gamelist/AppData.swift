@@ -39,10 +39,5 @@ class DataMemory: ObservableObject {
     
     @Published var firstName = ""
     @Published var lastName = ""
-    
-    @Published var searchList: [GAME] = []
-    @Published var userList: [GAME] = []
-    
-    
 }
 

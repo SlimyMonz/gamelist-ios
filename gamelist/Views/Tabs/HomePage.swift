@@ -36,22 +36,26 @@ struct HomePage_Previews: PreviewProvider {
 }
 
 
-// figure out why the array is "bleeding" into each view
-
 struct ConsoleSearchView: View {
     
-    private let search = searchAPI()
-    private let platform: String
+    let search = searchAPI()
+    let platform: String
+    
+    @ObservedObject var vm = ListViewModel()
     
     init(platform: String) {
+        
         self.platform = platform
         self.search.setPlatform(platform: platform)
-        self.search.doSearch()
+        search.getGameList { [self](list) in
+            self.vm.removeGames()
+            self.vm.addGames(list: list)
+        }
     }
     
     var body: some View {
         NavigationLink {
-            ListView(title: platform)
+            ListView(vm: vm, platform: platform)
         } label: {
             Text("Tap to search.")
                 .foregroundColor(.blue)

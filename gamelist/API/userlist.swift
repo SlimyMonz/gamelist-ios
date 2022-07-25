@@ -24,7 +24,7 @@ struct userlist: View {
                     search.setPlatform(platform: "Xbox One")
                     search.doSearch()
                 }
-            ListView(title: "User List", isUserList: true)
+            
             
         }
     }
@@ -47,8 +47,7 @@ class userlistAPI: ObservableObject {
     func doSearch()
     {
         getUserList { (list) in
-            Mem.dm.userList.removeAll()
-            Mem.dm.userList.append(contentsOf: list)
+            print(list.description)
         }
     }
     

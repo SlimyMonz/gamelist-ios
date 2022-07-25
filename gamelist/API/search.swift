@@ -12,19 +12,26 @@ import SwiftUI
 struct searchview: View {
     
     @StateObject var search = searchAPI()
+    @ObservedObject var vm = ListViewModel()
+    
     
     var body: some View {
+        
         VStack{
             
             Text("Tap to search.")
             .foregroundColor(.blue)
             .fontWeight(.semibold)
             .onTapGesture {
-                search.setPlatform(platform: Constant.ps5)
-                search.doSearch()
+                // THESE ARE WHAT YOU WANT TO DO FOR EACH SEARCH!!!
+                search.setPlatform(platform: Constant.ps3)
+                search.getGameList { [self](list) in
+                    self.vm.removeGames()
+                    self.vm.addGames(list: list)
+                }
+                
             }
-
-            ListView(title: "Search")
+            ListView(vm: vm, platform: "Search")
         }
     }
 }
@@ -38,6 +45,7 @@ struct searchview_Previews: PreviewProvider {
 class searchAPI: ObservableObject {
     
     @Published var platform = ""
+    @Published var list: [GAME] = []
     
     func setPlatform(platform: String) {
         self.platform = platform
@@ -45,9 +53,9 @@ class searchAPI: ObservableObject {
     
     func doSearch()
     {
-        getGameList { (list) in
-                Mem.dm.searchList.removeAll()
-                Mem.dm.searchList.append(contentsOf: list)
+        getGameList { [weak self](list) in
+            self?.list.removeAll()
+            self?.list.append(contentsOf: list)
         }
     }
     

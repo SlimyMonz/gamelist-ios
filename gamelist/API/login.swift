@@ -39,9 +39,6 @@ struct login_Previews: PreviewProvider {
     }
 }
 
-
-
-
 class loginAPI: ObservableObject {
     
     @Published var username: String = ""

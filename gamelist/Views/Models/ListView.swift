@@ -9,35 +9,37 @@ import SwiftUI
 
 struct ListView: View {
     
-    @ObservedObject var dmv = Mem.dm
+    @ObservedObject var vm: ListViewModel
     
-    let title: String
-    var isUserList: Bool?
-    
+    let platform: String
+
     var body: some View {
-        
-        if (isUserList ?? false) {
-            
-            List(dmv.userList) { game in
+
+            List(vm.list) { game in
                 ListCell(game: game)
             }
-            .navigationTitle(title)
-            
-        } else {
-            
-            List(dmv.searchList) { game in
-                ListCell(game: game)
-            }
-            .navigationTitle(title)
-        }
+            .navigationTitle(platform)
     }
 }
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView(title: "Example Title")
+        ListView(vm: ListViewModel(), platform: "Example Title")
     }
 }
 
+
+class ListViewModel: ObservableObject {
+    
+    @Published var list: [GAME] = []
+    
+    func addGames(list: [GAME]) {
+        self.list.append(contentsOf: list)
+    }
+    
+    func removeGames() {
+        self.list.removeAll()
+    }
+}
 
 
