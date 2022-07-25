@@ -11,12 +11,6 @@ struct AccountPage: View {
     
     @ObservedObject var dvm = Mem.dm
     
-    var bool = Mem.dm.verified {
-        didSet {
-            // run function to get user info
-        }
-    }
-    
     var body: some View {
         
         

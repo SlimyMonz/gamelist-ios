@@ -25,6 +25,8 @@ struct HomePage: View {
                 
                 ConsoleSearchView(platform: Constant.ps3)
                 
+                ConsoleSearchView(platform: Constant.x360)
+                
             }
             .navigationTitle("Consoles")
         }
@@ -59,20 +61,34 @@ struct ConsoleSearchView: View {
     var body: some View {
         
         VStack {
+            Text(self.platform)
+                .fontWeight(.medium)
+                .font(.callout)
             
             NavigationLink {
                 ListView(vm: vm, platform: platform)
             } label: {
-                    
-                    Image(self.platform + "-icon")
-                        .resizable()
-                        .scaledToFit()
-                        .background()
                 
+                Image(self.platform + "-icon")
+                    .resizable()
+                    .scaledToFit()
+                    .background()
+                    .cornerRadius(25)
+                    .shadow(radius: 5, y: 5)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 25)
+                            .stroke(.white, lineWidth: 2)
+                            .padding(5)
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 25)
+                            .stroke(.white, lineWidth: 5)
+                            .padding(5)
+                            .blur(radius: 3)
+                    )
             }
-            Text(self.platform)
-                .font(.headline)
         }
-        .padding()
+        .padding(25)
+        
     }
 }

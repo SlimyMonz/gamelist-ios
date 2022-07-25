@@ -25,11 +25,11 @@ struct GameView: View {
                     },
                     placeholder: {
                         ProgressView(){
-                            Image("default-icon")
+                            Image("placeholder-cover")
                                 .resizable()
                                 .scaledToFit()
                                 .background()
-                        } .padding().progressViewStyle(.linear)
+                        } .progressViewStyle(.linear)
                     }
                 )
             
@@ -39,7 +39,7 @@ struct GameView: View {
             Text("User Rating: " + (game.userRating ?? "N/A"))
             Text("Description: " + (game.description ?? "N/A"))
         }
-        .navigationTitle(self.game.name ?? "").navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(self.game.name ?? "").navigationBarTitleDisplayMode(.inline).padding()
     }
 }
 
