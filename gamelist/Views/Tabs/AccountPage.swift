@@ -13,8 +13,6 @@ struct AccountPage: View {
     
     var body: some View {
         
-        
-        
         NavigationView {
             VStack {
                 Text(dvm.username)
@@ -29,7 +27,9 @@ struct AccountPage: View {
                 
             }
         }
-        
+        .onAppear(perform:{
+            print("hey")
+        })
     }
 }
 

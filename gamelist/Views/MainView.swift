@@ -15,6 +15,7 @@ struct MainView: View {
     
     @State var selected_tab = 2
     
+    
     var body: some View {
         
         if (dmv.verified) {
