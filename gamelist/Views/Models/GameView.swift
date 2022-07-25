@@ -10,9 +10,9 @@ import SwiftUI
 struct GameView: View {
     
     let game: GAME
-    
-    
+
     var body: some View {
+            
         
         ScrollView{
             
@@ -33,11 +33,11 @@ struct GameView: View {
                     }
                 )
             
-            Text(game.id)
-            Text(game.name ?? "N/A")
-            Text(game.description ?? "N/A")
-            Text(game.rating ?? "N/A")
-            Text(game.userRating ?? "N/A")
+            Text("Game ID: " + game.id)
+                .font(.footnote).padding(.bottom)
+            Text("Overall Rating: " + (game.rating ?? "N/A"))
+            Text("User Rating: " + (game.userRating ?? "N/A"))
+            Text("Description: " + (game.description ?? "N/A"))
         }
         .navigationTitle(self.game.name ?? "").navigationBarTitleDisplayMode(.inline)
     }
