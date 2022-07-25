@@ -29,14 +29,14 @@ struct LoginPage : View {
                     
                 TextField("Username", text: $username)
                     .padding()
-                    .background(lightGreyColor)
+                    .background(.black.opacity(0.1))
                     .cornerRadius(5.0)
                     .padding(.bottom)
                     .disableAutocorrection(true)
                     .autocapitalization(.none)
                 SecureField("Password", text: $password)
                     .padding()
-                    .background(lightGreyColor)
+                    .background(.black.opacity(0.1))
                     .cornerRadius(5.0)
                     .padding(.bottom, 50)
                 

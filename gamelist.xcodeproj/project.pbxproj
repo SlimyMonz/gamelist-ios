@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75337AC8288F189600EDDB70 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75337AC7288F189600EDDB70 /* GameView.swift */; };
 		755037F1288CDAEB0052B8EC /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755037F0288CDAEB0052B8EC /* ListView.swift */; };
 		75552E3C28766C0E0016CC6A /* gamelistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75552E3B28766C0E0016CC6A /* gamelistApp.swift */; };
 		75552E3E28766C0E0016CC6A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75552E3D28766C0E0016CC6A /* LoginView.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		75337AC7288F189600EDDB70 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		755037F0288CDAEB0052B8EC /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		75552E3828766C0E0016CC6A /* gamelist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gamelist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75552E3B28766C0E0016CC6A /* gamelistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamelistApp.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				75FB1BDB287F4FB500033702 /* RegisterView.swift */,
 				75FB1BE4287F851F00033702 /* WebView.swift */,
 				75C6AFBB288DB9460077FC56 /* ListCell.swift */,
+				75337AC7288F189600EDDB70 /* GameView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				75552E6628766E750016CC6A /* KeyboardResponder.swift in Sources */,
 				75C6AFBC288DB9460077FC56 /* ListCell.swift in Sources */,
 				7598D27A288DE94500BBA00F /* TestData.swift in Sources */,
+				75337AC8288F189600EDDB70 /* GameView.swift in Sources */,
 				7558343D2885DE0300063C0E /* decoder.swift in Sources */,
 				75FB1BDA287F4F1300033702 /* login.swift in Sources */,
 				7558149D288B0F0B00459152 /* search.swift in Sources */,

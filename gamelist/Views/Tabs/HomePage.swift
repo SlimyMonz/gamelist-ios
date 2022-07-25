@@ -13,18 +13,21 @@ struct HomePage: View {
     var body: some View {
         NavigationView {
             
-            VStack {
+            ScrollView {
                 
                 ConsoleSearchView(platform: Constant.ps5)
                 
+                ConsoleSearchView(platform: Constant.xsx)
+                
                 ConsoleSearchView(platform: Constant.ps4)
+                
+                ConsoleSearchView(platform: Constant.xbone)
                 
                 ConsoleSearchView(platform: Constant.ps3)
                 
             }
             .navigationTitle("Consoles")
         }
-        
         
     }
 }
@@ -54,13 +57,22 @@ struct ConsoleSearchView: View {
     }
     
     var body: some View {
-        NavigationLink {
-            ListView(vm: vm, platform: platform)
-        } label: {
-            Text("Tap to search.")
-                .foregroundColor(.blue)
-                .fontWeight(.semibold)
+        
+        VStack {
             
+            NavigationLink {
+                ListView(vm: vm, platform: platform)
+            } label: {
+                    
+                    Image(self.platform + "-icon")
+                        .resizable()
+                        .scaledToFit()
+                        .background()
+                
+            }
+            Text(self.platform)
+                .font(.headline)
         }
+        .padding()
     }
 }

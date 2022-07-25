@@ -13,12 +13,18 @@ struct ListCell: View {
     
     var body: some View {
         
-        
-        VStack (alignment: .leading, spacing: 8) {
-            Text(self.game.name ?? "NO NAME!")
-                .fontWeight(.semibold)
-                .lineLimit(1)
-        }
+
+            
+            NavigationLink {
+                GameView(game: game)
+            } label: {
+                VStack (alignment: .leading, spacing: 8) {
+                    Text(self.game.name ?? "NO NAME!")
+                        .fontWeight(.semibold)
+                        .lineLimit(1)
+                }
+            }
+
     }
 }
 
@@ -33,4 +39,4 @@ struct ListCell_Previews: PreviewProvider {
 
 
 
-let game_demo = GAME(id: "12345", name: "test game", description: "not a real game", cover: nil, rating: "5", userRating: "0")
+

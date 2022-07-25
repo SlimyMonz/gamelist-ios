@@ -7,6 +7,8 @@
 
 import Foundation
 
+let game_demo = GAME(id: "12345", name: "test game", description: "not a real game", cover: "https://cdn.mos.cms.futurecdn.net/MMwRCjVEaoJPP4dBBugWFY.jpg", rating: "5", userRating: "0")
+
 enum Constant
 {
     static let base_url = "https://my-game-list-front.herokuapp.com/"
@@ -15,7 +17,8 @@ enum Constant
     static let game_url = "api/games/searchAllGames"
     static let userlist_url = "api/games/searchUser/"
     
-    static let xbone = "Xbox One X"
+    static let xsx = "Xbox Series X"
+    static let xbone = "Xbox One"
     static let x360 = "Xbox 360"
     static let ps5 = "PlayStation 5"
     static let ps4 = "PlayStation 4"
