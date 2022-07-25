@@ -11,6 +11,7 @@ struct GameView: View {
     
     let game: GAME
     
+    
     var body: some View {
         
         ScrollView{
@@ -33,10 +34,10 @@ struct GameView: View {
                 )
             
             Text(game.id)
-            Text(game.name ?? "name")
-            Text(game.description ?? "description")
-            Text(game.rating ?? "rating")
-            Text(game.userRating ?? "user rating")
+            Text(game.name ?? "N/A")
+            Text(game.description ?? "N/A")
+            Text(game.rating ?? "N/A")
+            Text(game.userRating ?? "N/A")
         }
         .navigationTitle(self.game.name ?? "").navigationBarTitleDisplayMode(.inline)
     }
