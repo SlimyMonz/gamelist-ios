@@ -74,7 +74,7 @@ struct DoRegisterButton: View {
             .foregroundColor(.white)
             .padding()
             .frame(width: 150, height: 60)
-            .background(Color.green)
+            .background(.green.opacity(0.85))
             .cornerRadius(15.0)
     }
 }

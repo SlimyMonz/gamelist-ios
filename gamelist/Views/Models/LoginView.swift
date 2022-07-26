@@ -24,19 +24,18 @@ struct LoginPage : View {
             VStack {
                 
                 WelcomeImage()
-                
-                // replace the text with an image
+                    .padding(.bottom)
                     
                 TextField("Username", text: $username)
                     .padding()
-                    .background(.black.opacity(0.1))
+                    .background(.quaternary)
                     .cornerRadius(5.0)
                     .padding(.bottom)
                     .disableAutocorrection(true)
                     .autocapitalization(.none)
                 SecureField("Password", text: $password)
                     .padding()
-                    .background(.black.opacity(0.1))
+                    .background(.quaternary)
                     .cornerRadius(5.0)
                     .padding(.bottom, 50)
                 
@@ -76,7 +75,7 @@ struct LoginButton: View {
             .foregroundColor(.white)
             .padding()
             .frame(width: 150, height: 60)
-            .background(Color.green)
+            .background(.green.opacity(0.75))
             .cornerRadius(15.0)
     }
 }
@@ -88,18 +87,21 @@ struct RegisterButton: View {
             .foregroundColor(.white)
             .padding()
             .frame(width: 150, height: 60)
-            .background(Color.red)
+            .background(.red.opacity(0.75))
             .cornerRadius(15.0)
     }
 }
 
 struct WelcomeImage: View {
     var body: some View {
-        
-        Image("mygamelist-icon")
-            .resizable()
-
-            .scaledToFill()
+        ZStack {
+            Image("mygamelist-icon")
+                .resizable()
+                .scaledToFit()
+                .padding(25)
+                .cornerRadius(50)
+            
+        }
     }
 }
 

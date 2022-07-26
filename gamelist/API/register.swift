@@ -88,6 +88,10 @@ class registerAPI: ObservableObject {
             if (response == "200") {self.dmv.registered = true}
             self.error = response
         }
+        sendEmail { (response) in
+            if (response == "200") {self.dmv.verified = true}
+            self.error = response
+        }
     }
     
     func sendRegister(completion: @escaping (String) -> Void) {
@@ -128,7 +132,48 @@ class registerAPI: ObservableObject {
                 completion("error")
                 return
             }
-            completion(httpResponse.description)
+            completion("200")
+            
+        }.resume()
+    }
+    
+    func sendEmail(completion: @escaping (String) -> Void) {
+        
+        guard
+            let url = URL(string: Constant.base_url + Constant.email_url)
+        else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // add token to request in here somewhere
+
+        let body = [
+            "id": username,
+            "firstName": first_name,
+            "email": email
+        ]
+            
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        
+        URLSession.shared.dataTask(with: request) { _, response, error in
+            guard
+            let httpResponse = response as? HTTPURLResponse,
+            httpResponse.statusCode == 200
+            else {
+                completion("no http response")
+                return
+            }
+            guard
+                error == nil
+            else {
+                completion("error")
+                return
+            }
+            completion("200")
             
         }.resume()
     }
