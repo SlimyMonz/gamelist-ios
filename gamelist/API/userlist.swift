@@ -12,20 +12,23 @@ import SwiftUI
 
 struct userlist: View {
     
-    @StateObject var search = userlistAPI()
+    @ObservedObject var search = userlistAPI(
+        id: Temp.testID,
+        token: Temp.testToken
+    )
     
     var body: some View {
-        VStack{
+        ScrollView{
             
             Text("Tap to search.")
                 .foregroundColor(.blue)
                 .fontWeight(.semibold)
                 .onTapGesture {
-                    search.setPlatform(platform: "Xbox One")
                     search.doSearch()
                 }
-            
-            
+            Text(search.list.description)
+            Text(search.sent_data)
+            Text(search.error)
         }
     }
 }
@@ -38,16 +41,24 @@ struct userlist_Previews: PreviewProvider {
 
 class userlistAPI: ObservableObject {
     
-    @Published var platform = ""
+    @Published var list: [GAME] = []
+    @Published var error = ""
+    @Published var sent_data = ""
     
-    func setPlatform(platform: String) {
-        self.platform = platform
+    var id: String
+    var token: String
+    
+    init(id: String, token: String)
+    {
+        self.id = id
+        self.token = "Bearer " + token
     }
     
     func doSearch()
     {
-        getUserList { (list) in
-            print(list.description)
+        getUserList { [weak self](list) in
+            self?.list.removeAll()
+            self?.list.append(contentsOf: list)
         }
     }
     
@@ -65,16 +76,16 @@ class userlistAPI: ObservableObject {
         
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer " + Mem.dm.token, forHTTPHeaderField: "authentication")
+        request.addValue(self.token, forHTTPHeaderField: "authorization")
         
-        let body = ["_id" : Mem.dm.id]
+        let body = ["_id" : self.id]
         
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard
-                let httpResponse = response as? HTTPURLResponse,
-                httpResponse.statusCode == 200
+            let httpResponse = response as? HTTPURLResponse,
+            httpResponse.statusCode == 200
             else {
                 return
             }
@@ -90,9 +101,9 @@ class userlistAPI: ObservableObject {
             }
             do {
                 let decodedData = try JSONDecoder().decode([GAME].self, from: data)
-                completion(decodedData)
+                    completion(decodedData)
             } catch {
-                
+                self.error = "cannot decode"
             }
         }.resume()
     }

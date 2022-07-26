@@ -11,9 +11,27 @@ import SwiftUI
 
 struct MyListPage: View {
     
-
+    @StateObject var search = userlistAPI(id: Mem.dm.id, token: Mem.dm.token)
+    @ObservedObject var vm = ListViewModel()
+    
+    
     var body: some View {
-        Text("Nothing here yet")
+        
+        VStack{
+            
+            Text("Tap to search.")
+                .foregroundColor(.blue)
+                .fontWeight(.semibold)
+                .onTapGesture {
+                   
+                    search.getUserList{ [self](list) in
+                        self.vm.removeGames()
+                        self.vm.addGames(list: list)
+                    }
+                    
+                }
+            ListView(vm: vm, platform: "Search")
+        }
     }
 }
 

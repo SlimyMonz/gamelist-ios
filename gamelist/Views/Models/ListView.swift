@@ -41,5 +41,3 @@ class ListViewModel: ObservableObject {
         self.list.removeAll()
     }
 }
-
-

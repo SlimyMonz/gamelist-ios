@@ -152,7 +152,7 @@ class registerAPI: ObservableObject {
         // add token to request in here somewhere
 
         let body = [
-            "id": username,
+            "id": dmv.id,
             "firstName": first_name,
             "email": email
         ]

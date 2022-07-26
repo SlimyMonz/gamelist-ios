@@ -7,7 +7,7 @@
 
 import Foundation
 
-let game_demo = GAME(id: "12345", name: "test game", description: "not a real game", cover: "https://cdn.mos.cms.futurecdn.net/MMwRCjVEaoJPP4dBBugWFY.jpg", rating: "5", userRating: "0")
+let game_demo = GAME(id: "12345", name: "test game", description: "not a real game", cover: "https://cdn.mos.cms.futurecdn.net/MMwRCjVEaoJPP4dBBugWFY.jpg", rating: "5", userRating: "N/A")
 
 enum Constant
 {
@@ -15,7 +15,7 @@ enum Constant
     static let login_url = "api/users/login/"
     static let register_url = "api/users/register/"
     static let game_url = "api/games/searchAllGames"
-    static let userlist_url = "api/games/searchUser/"
+    static let userlist_url = "api/games/getUserGames"
     static let email_url = "api/users/sendEmail"
     
     static let xsx = "Xbox Series X"
@@ -41,14 +41,16 @@ struct GAME: Decodable, Identifiable
     
     enum CodingKeys: String, CodingKey
     {
-        case id = "id"
+        case id = "_id"
         case name = "name"
         case description = "description"
-        case cover = "cover"
+        case cover = "image"
         case rating = "rating"
-        case userRating = "userRating"
+        case userRating = "personalRating"
     }
 }
+
+
 
 struct JWT: Decodable
 {
