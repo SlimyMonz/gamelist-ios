@@ -12,18 +12,16 @@ import SwiftUI
 
 struct userlist: View {
     
-    @ObservedObject var search = userlistAPI(
-        id: Temp.testID,
-        token: Temp.testToken
-    )
+    @ObservedObject var search = userlistAPI()
     
     var body: some View {
         ScrollView{
             
-            Text("Tap to search.")
+            Text("Tap to display userlist.")
                 .foregroundColor(.blue)
                 .fontWeight(.semibold)
                 .onTapGesture {
+                    search.setUser(id: Temp.testID, token: Temp.testToken)
                     search.doSearch()
                 }
             Text(search.list.description)
@@ -45,10 +43,10 @@ class userlistAPI: ObservableObject {
     @Published var error = ""
     @Published var sent_data = ""
     
-    var id: String
-    var token: String
+    @Published var id = ""
+    @Published var token = ""
     
-    init(id: String, token: String)
+    func setUser(id: String, token: String)
     {
         self.id = id
         self.token = "Bearer " + token
@@ -87,6 +85,7 @@ class userlistAPI: ObservableObject {
             let httpResponse = response as? HTTPURLResponse,
             httpResponse.statusCode == 200
             else {
+                self.error = "not allowed"
                 return
             }
             guard

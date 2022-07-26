@@ -11,26 +11,32 @@ import SwiftUI
 
 struct MyListPage: View {
     
-    @StateObject var search = userlistAPI(id: Mem.dm.id, token: Mem.dm.token)
+    @ObservedObject var dvm = Mem.dm
+    @ObservedObject var search = userlistAPI()
     @ObservedObject var vm = ListViewModel()
     
+    init() {
+        search.setUser(id: dvm.id, token: dvm.token)
+        self.search.getUserList{ [self](list) in
+            self.vm.removeGames()
+            self.vm.addGames(list: list)
+        }
+    }
     
     var body: some View {
         
         VStack{
             
-            Text("Tap to search.")
+            Text("Tap to refresh list.")
                 .foregroundColor(.blue)
                 .fontWeight(.semibold)
                 .onTapGesture {
-                   
                     search.getUserList{ [self](list) in
                         self.vm.removeGames()
                         self.vm.addGames(list: list)
                     }
-                    
                 }
-            ListView(vm: vm, platform: "Search")
+            ListView(vm: vm, platform: "User List")
         }
     }
 }
