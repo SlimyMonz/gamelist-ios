@@ -12,9 +12,11 @@ struct GameView: View {
     let game: GAME
 
     var body: some View {
-            
+        
         
         ScrollView{
+            
+            VStack {
             
                 AsyncImage(
                     url: URL(string: game.cover ?? ""),
@@ -32,14 +34,15 @@ struct GameView: View {
                         } .progressViewStyle(.linear)
                     }
                 )
-            
-            Text("Game ID: " + game.id)
-                .font(.footnote).padding(.bottom)
-            Text("Overall Rating: " + (game.rating ?? "N/A"))
-            Text("User Rating: " + (game.userRating ?? "0"))
-            Text("Description: " + (game.description ?? "N/A"))
+                
+                Text("Game ID: " + game.id)
+                    .font(.footnote).padding(.bottom)
+                Text("Overall Rating: " + (game.rating ?? "N/A"))
+                Text("User Rating: " + (game.userRating ?? "0"))
+                Text("Description: " + (game.description ?? "N/A"))
+            }
+            .navigationTitle(self.game.name ?? "").navigationBarTitleDisplayMode(.inline).padding()
         }
-        .navigationTitle(self.game.name ?? "").navigationBarTitleDisplayMode(.inline).padding()
     }
 }
 
