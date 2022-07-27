@@ -16,7 +16,7 @@ enum Constant
     static let register_url = "api/users/register/"
     static let game_url = "api/games/searchAllGames"
     static let userlist_url = "api/games/getUserGames"
-    static let email_url = "api/users/sendEmail"
+    static let email_url = "api/email/sendVerification"
     
     static let xsx = "Xbox Series X"
     static let xbone = "Xbox One"
@@ -94,7 +94,7 @@ struct USER: Decodable
 
 struct REGISTER: Decodable
 {
-    let message: String?
+    let message: String
     let id: String
     let email: String
     let firstName: String

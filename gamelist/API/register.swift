@@ -9,7 +9,7 @@ import UIKit
 import Foundation
 import SwiftUI
 
-struct register: View {
+struct registerView: View {
     
     @StateObject var vm = registerAPI()
     @ObservedObject var dvm = Mem.dm
@@ -34,7 +34,7 @@ struct register: View {
                     pass: "empty",
                     first: "empty",
                     last: "empty",
-                    email: "no"
+                    email: "khyrdantai@icloud.com"
                 )
                 self.buttonPressed = checkEmail
                 vm.sendData()
@@ -44,14 +44,14 @@ struct register: View {
                 .foregroundColor(.green)
             Text(errorText)
                 .foregroundColor(.red)
-                
+            Text(vm.error)
         }
     }
 }
 
 struct register_Previews: PreviewProvider {
     static var previews: some View {
-        register()
+        registerView()
     }
 }
 
@@ -83,16 +83,20 @@ class registerAPI: ObservableObject {
     }
     
     func sendData() {
-        sendRegister { (response) in
-            if (response == "200") {self.dmv.registered = true}
-            self.error = response
-        }
-        sendEmail { (response) in
-            self.error = response
+        sendRegister { (data) in
+            if (!data.message.isEmpty) {
+                self.dmv.registered = true
+                self.dmv.id = data.id
+                self.sendEmail { (response) in
+                    self.error = response
+                }
+            } else {
+                self.error = "Invalid."
+            }
         }
     }
     
-    func sendRegister(completion: @escaping (String) -> Void) {
+    func sendRegister(completion: @escaping (REGISTER) -> Void) {
         
         guard
             let url = URL(string: Constant.base_url + Constant.register_url)
@@ -116,23 +120,29 @@ class registerAPI: ObservableObject {
             
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
-        URLSession.shared.dataTask(with: request) { _, response, error in
+        URLSession.shared.dataTask(with: request) { data, response, error in
             guard
             let httpResponse = response as? HTTPURLResponse,
             httpResponse.statusCode == 200
             else {
-                completion("no http response")
                 return
             }
             guard
                 error == nil
             else {
-                completion("error")
                 return
             }
-            completion("200")
-            
-            // instead of returning a string, set the ID somewhere in here
+            guard
+                let data = data
+            else {
+                return
+            }
+            do {
+                let decodedData = try JSONDecoder().decode(REGISTER.self, from: data)
+                completion(decodedData)
+            } catch {
+                return
+            }
             
         }.resume()
     }
