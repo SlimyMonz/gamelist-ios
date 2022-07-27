@@ -35,6 +35,7 @@ class ListViewModel: ObservableObject {
     
     func addGames(list: [GAME]) {
         self.list.append(contentsOf: list)
+        self.list.sort { $0.name! < $1.name! }
     }
     
     func removeGames() {
