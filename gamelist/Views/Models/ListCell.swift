@@ -12,9 +12,7 @@ struct ListCell: View {
     let game: GAME
     
     var body: some View {
-        
 
-            
             NavigationLink {
                 GameView(game: game)
             } label: {
@@ -24,7 +22,6 @@ struct ListCell: View {
                         .lineLimit(1)
                 }
             }
-
     }
 }
 

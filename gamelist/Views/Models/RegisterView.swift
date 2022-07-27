@@ -45,7 +45,6 @@ struct RegisterPage : View {
                 
             }
             
-            
             Button(action: {
                 reg.setInfo(user: username, pass: password, first: first_name, last: last_name, email: email)
                 reg.sendData()
