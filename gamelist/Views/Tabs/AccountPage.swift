@@ -14,7 +14,7 @@ struct AccountPage: View {
     var body: some View {
         
         NavigationView {
-            VStack {
+            ScrollView {
                 
                 Text("Username:")
                     .padding(.top, 300)
@@ -27,19 +27,17 @@ struct AccountPage: View {
                 }.padding(.bottom)
                 Text("Email: ")
                 CTextField(dvm.email)
-                    .padding(.bottom)
-                
-                Text("User ID: " + dvm.id)
-                    .offset(y: 130)
+                    .padding(.bottom, 150)
                 
                 Text("Logout")
-                    .foregroundColor(.red)
-                    .padding(20)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 25)
-                            .stroke(.red, lineWidth: 2)
-                    )
-                    .padding(.top, 20)
+                    .padding(25)
+                    .background(.red)
+                    .cornerRadius(25)
+                    .foregroundColor(.primary)
+                    .font(.headline)
+                    .onTapGesture{dvm.verified = false}
+                Text("User ID: " + dvm.id)
+                
             }
         }
     }
