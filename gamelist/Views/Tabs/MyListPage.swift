@@ -25,18 +25,10 @@ struct MyListPage: View {
     
     var body: some View {
         
-        VStack{
-            
-            Text("Tap to refresh list.")
-                .foregroundColor(.blue)
-                .fontWeight(.semibold)
-                .onTapGesture {
-                    search.getUserList{ [self](list) in
-                        self.vm.removeGames()
-                        self.vm.addGames(list: list)
-                    }
-                }
-            ListView(vm: vm, platform: "User List")
+        NavigationView{
+            VStack{
+                ListView(vm: vm, platform: dvm.firstName + "'s List")
+            }
         }
     }
 }

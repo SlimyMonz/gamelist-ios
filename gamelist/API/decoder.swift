@@ -43,7 +43,7 @@ func decode_JSON(json: Data) -> USER
         let data = try JSONDecoder().decode(JSON.self, from: json)
         return data.user[0]
     } catch {
-        return USER(id: "-1", verified: false, username: "")
+        return USER(id: "-1", verified: false, username: "", email: "", firstName: "", lastName: "")
     }
 }
 

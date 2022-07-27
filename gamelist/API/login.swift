@@ -29,6 +29,9 @@ struct login: View {
             Text(Mem.dm.token)
             Text(Mem.dm.username)
             Text(Mem.dm.id)
+            Text(Mem.dm.firstName)
+            Text(Mem.dm.lastName)
+            Text(Mem.dm.email)
         }
     }
 }
@@ -44,6 +47,7 @@ class loginAPI: ObservableObject {
     @Published var username: String = ""
     @Published var password: String = ""
     
+    
     func setInfo(username: String, password: String) {
         self.username = username
         self.password = password
@@ -55,6 +59,9 @@ class loginAPI: ObservableObject {
             Mem.dm.id = user.id
             Mem.dm.verified = user.verified
             Mem.dm.username = user.username
+            Mem.dm.firstName = user.firstName
+            Mem.dm.lastName = user.lastName
+            Mem.dm.email = user.email
         }
     }
     

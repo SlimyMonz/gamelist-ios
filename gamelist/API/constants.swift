@@ -77,12 +77,18 @@ struct USER: Decodable
     let id: String
     let verified: Bool
     let username: String
+    let email: String
+    let firstName: String
+    let lastName: String
     
     enum CodingKeys: String, CodingKey
     {
         case id = "_id"
         case verified = "verified"
         case username = "userName"
+        case email = "email"
+        case firstName = "firstName"
+        case lastName = "lastName"
     }
 }
 

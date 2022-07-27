@@ -31,6 +31,7 @@ struct searchview: View {
                 }
                 
             }
+            Text(vm.list.description)
             ListView(vm: vm, platform: "Search")
         }
     }
