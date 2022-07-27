@@ -34,7 +34,6 @@
 		75FB1BDC287F4FB500033702 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FB1BDB287F4FB500033702 /* RegisterView.swift */; };
 		75FB1BDE287F7BF100033702 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FB1BDD287F7BF100033702 /* MainView.swift */; };
 		75FB1BE5287F851F00033702 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FB1BE4287F851F00033702 /* WebView.swift */; };
-		75FCCDBA2890BCC4004D63E3 /* AccountPageUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FCCDB82890BC48004D63E3 /* AccountPageUITest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +84,6 @@
 		75FB1BDB287F4FB500033702 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		75FB1BDD287F7BF100033702 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		75FB1BE4287F851F00033702 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		75FCCDB82890BC48004D63E3 /* AccountPageUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPageUITest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +148,6 @@
 		75552E3A28766C0E0016CC6A /* gamelist */ = {
 			isa = PBXGroup;
 			children = (
-				75FCCDB82890BC48004D63E3 /* AccountPageUITest.swift */,
 				7598D279288DE94500BBA00F /* TestData.swift */,
 				75C2F0F62880A32A00B4DDD6 /* Settings.bundle */,
 				75FB1BD8287F4E5600033702 /* Views */,
@@ -356,7 +353,6 @@
 			files = (
 				75640D7B2888C61D003575D7 /* AppData.swift in Sources */,
 				75F65EE4287FA470000FBA8F /* MyListPage.swift in Sources */,
-				75FCCDBA2890BCC4004D63E3 /* AccountPageUITest.swift in Sources */,
 				75F65EE0287FA29E000FBA8F /* AccountPage.swift in Sources */,
 				755037F1288CDAEB0052B8EC /* ListView.swift in Sources */,
 				75FB1BDC287F4FB500033702 /* RegisterView.swift in Sources */,
