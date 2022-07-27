@@ -37,7 +37,15 @@ struct AccountPage: View {
                     .cornerRadius(25)
                     .foregroundColor(.primary)
                     .font(.headline)
-                    .onTapGesture{dvm.verified = false}
+                    .onTapGesture{
+                        dvm.verified = false
+                        dvm.email = ""
+                        dvm.username = ""
+                        dvm.firstName = ""
+                        dvm.lastName = ""
+                        dvm.id = ""
+                        dvm.token = ""
+                    }
                 Text("User ID: " + dvm.id)
                 
             }
