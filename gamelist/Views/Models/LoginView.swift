@@ -27,11 +27,6 @@ struct LoginPage : View {
                 
                 WelcomeImage()
                     .padding(.bottom)
-                
-                if (!loginLogic(pressed: login_pressed)) {
-                    Text("Incorrect login info.")
-                        .foregroundColor(.red)
-                }
                     
                 TextField("Username", text: $username)
                     .padding()
@@ -63,7 +58,7 @@ struct LoginPage : View {
                     
                 }
                 
-                NavigationLink("Forgot Password?", destination: WebView())
+                NavigationLink("Forgot Password?", destination: WebView().navigationTitle("Website"))
                     .padding(.top)
                 
                 
@@ -119,13 +114,3 @@ struct WelcomeImage: View {
 }
 
 
-func loginLogic(pressed: Bool) -> Bool {
-    
-    let verified = Mem.dm.verified
-    
-    if (!verified && pressed) {
-        return false
-    } else {
-        return true
-    }
-}

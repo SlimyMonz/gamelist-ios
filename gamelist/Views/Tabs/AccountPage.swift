@@ -14,10 +14,12 @@ struct AccountPage: View {
     var body: some View {
         
         NavigationView {
-            ScrollView {
+            VStack {
+                
+                Image("mygamelist-icon")
                 
                 Text("Username:")
-                    .padding(.top, 300)
+                    .padding(.top, 50)
                 CTextField(dvm.username)
                     .padding(.bottom)
                 Text("Name: ")
@@ -27,7 +29,7 @@ struct AccountPage: View {
                 }.padding(.bottom)
                 Text("Email: ")
                 CTextField(dvm.email)
-                    .padding(.bottom, 150)
+                    .padding(.bottom, 100)
                 
                 Text("Logout")
                     .padding(25)
