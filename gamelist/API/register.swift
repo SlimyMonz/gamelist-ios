@@ -84,12 +84,10 @@ class registerAPI: ObservableObject {
     
     func sendData() {
         sendRegister { (response) in
-            // most likely change the response thingy here
             if (response == "200") {self.dmv.registered = true}
             self.error = response
         }
         sendEmail { (response) in
-            if (response == "200") {self.dmv.verified = true}
             self.error = response
         }
     }
