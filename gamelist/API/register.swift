@@ -132,6 +132,8 @@ class registerAPI: ObservableObject {
             }
             completion("200")
             
+            // instead of returning a string, set the ID somewhere in here
+            
         }.resume()
     }
     

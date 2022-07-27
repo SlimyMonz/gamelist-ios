@@ -17,6 +17,8 @@ struct LoginPage : View {
     @ObservedObject var dmv = Mem.dm
     @ObservedObject var keyboardResponder = KeyboardResponder()
     
+    @State var login_pressed = false
+    
     var body: some View {
         
         NavigationView {
@@ -25,6 +27,11 @@ struct LoginPage : View {
                 
                 WelcomeImage()
                     .padding(.bottom)
+                
+                if (!loginLogic(pressed: login_pressed)) {
+                    Text("Incorrect login info.")
+                        .foregroundColor(.red)
+                }
                     
                 TextField("Username", text: $username)
                     .padding()
@@ -43,6 +50,7 @@ struct LoginPage : View {
                     Button(action: {
                         vm.setInfo(username: username, password: password)
                         vm.getData()
+                        login_pressed = true
                     }) {
                         LoginButton()
                     }
@@ -54,7 +62,12 @@ struct LoginPage : View {
                     }
                     
                 }
-                .padding(.bottom, 100)
+                
+                NavigationLink("Forgot Password?", destination: WebView())
+                    .padding(.top)
+                
+                
+                .padding(.bottom, 50)
             }.navigationTitle(Text("Login")).padding().navigationBarTitleDisplayMode(.automatic).offset(y: keyboardResponder.currentHeight * 0.2)
         }
     }
@@ -106,4 +119,13 @@ struct WelcomeImage: View {
 }
 
 
-
+func loginLogic(pressed: Bool) -> Bool {
+    
+    let verified = Mem.dm.verified
+    
+    if (!verified && pressed) {
+        return false
+    } else {
+        return true
+    }
+}

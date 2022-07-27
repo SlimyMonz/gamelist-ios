@@ -28,6 +28,7 @@ struct RegisterPage : View {
     var body: some View {
         
         VStack () {
+
             
             Form {
                 Section(header: Text("PROFILE")) {
@@ -61,7 +62,6 @@ struct RegisterPage : View {
 }
 
 
-
 struct RegisterPage_Previews: PreviewProvider {
     static var previews: some View {
         RegisterPage()
@@ -80,4 +80,5 @@ struct DoRegisterButton: View {
             .cornerRadius(15.0)
     }
 }
+
 
