@@ -28,7 +28,7 @@ struct RegisterPage : View {
     var body: some View {
         
         VStack () {
-
+            
             Form {
                 Section(header: Text("PROFILE")) {
                     TextField("Username", text: $username)
@@ -36,25 +36,28 @@ struct RegisterPage : View {
                     SecureField("Confirm Password", text: $confirm_password)
                 }
                 
+                
                 Section(header: Text("Info")) {
                     TextField("First Name", text: $first_name)
                     TextField("Last Name", text: $last_name)
                     TextField("Email", text: $email)
                 }
                 
-                // add text here for confirmation or error message
-                
-                
             }
+            
             
             Button(action: {
                 reg.setInfo(user: username, pass: password, first: first_name, last: last_name, email: email)
                 reg.sendData()
+                reg_pressed = true
             }) {
                 DoRegisterButton()
             }
+            .alert("Check your email!", isPresented: $reg_pressed) {
+                Button("Ok", role: .cancel) {}
+            }
+            .navigationTitle(Text("Register"))
         }
-        .navigationTitle(Text("Register"))
     }
 }
 
