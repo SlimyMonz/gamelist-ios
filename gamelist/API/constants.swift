@@ -17,6 +17,7 @@ enum Constant
     static let game_url = "api/games/searchAllGames"
     static let userlist_url = "api/games/getUserGames"
     static let email_url = "api/email/sendVerification"
+    static let reset = "api/email/passwordReset"
     
     static let xsx = "Xbox Series X|S"
     static let xbone = "Xbox One"

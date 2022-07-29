@@ -58,12 +58,12 @@ struct LoginPage : View {
                     
                 }
                 
-                NavigationLink("Forgot Password?", destination: WebView().navigationTitle("Website"))
+                NavigationLink("Forgot Password?", destination: ResetView())
                     .padding(.top)
                 
                 
                 .padding(.bottom, 50)
-            }.navigationTitle(Text("Login")).padding().navigationBarTitleDisplayMode(.automatic).offset(y: keyboardResponder.currentHeight * 0.2)
+            }.navigationTitle(Text("Login")).padding().offset(y: keyboardResponder.currentHeight * 0.2)
         }
     }
 }
