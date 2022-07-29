@@ -40,7 +40,7 @@ struct GameView: View {
                     .font(.footnote).padding(.bottom)
                 Text("Rating")
                     .fontWeight(.heavy)
-                Text(gameRateCheck(rating: (game.rating ?? "N/A")))
+                Text(gameRateCheck(rating: (game.rating ?? "")))
                     .font(.title).colorInvert()
                     .padding()
                     .background(getColor(rating: (game.rating ?? "0")))
@@ -62,7 +62,6 @@ struct GameView_Previews: PreviewProvider {
 }
 
 func gameRateCheck(rating: String) -> String {
-    
     if (rating == "") {return "?"}
     return rating
 }
