@@ -19,7 +19,7 @@ struct GameView: View {
             VStack {
             
                 AsyncImage(
-                    url: URL(string: game.cover ?? ""),
+                    url: URL(string: "https:" + (game.cover ?? "")),
                     content: { image in
                         image.resizable()
                             .aspectRatio(contentMode: .fit)
