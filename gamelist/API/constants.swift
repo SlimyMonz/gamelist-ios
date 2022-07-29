@@ -7,7 +7,7 @@
 
 import Foundation
 
-let game_demo = GAME(id: "12345", name: "test game", description: "not a real game", cover: "//images.igdb.com/igdb/image/upload/t_thumb/co23nc.jpg", rating: "5", userRating: "0")
+let game_demo = GAME(id: "12345", name: "test game", description: "not a real game", cover: "//images.igdb.com/igdb/image/upload/t_thumb/co23nc.jpg", rating: "8", userRating: "3")
 
 enum Constant
 {

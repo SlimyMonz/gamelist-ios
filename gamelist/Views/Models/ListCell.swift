@@ -19,8 +19,8 @@ struct ListCell: View {
             
             HStack {
                 
-                if (self.game.userRating != nil && self.game.userRating != "") {
-                    Text((self.game.userRating ?? ""))
+                if (self.game.userRating != nil) {
+                    Text(gameRateCheck(rating:(self.game.userRating ?? "?")))
                         .font(.title)
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.leading)

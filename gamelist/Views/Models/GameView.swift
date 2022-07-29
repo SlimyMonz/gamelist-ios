@@ -24,6 +24,7 @@ struct GameView: View {
                         image.resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(maxWidth: .greatestFiniteMagnitude)
+                            .padding(.horizontal)
                     },
                     placeholder: {
                         ProgressView(){
@@ -37,7 +38,13 @@ struct GameView: View {
                 
                 Text("Game ID: " + game.id)
                     .font(.footnote).padding(.bottom)
-                Text("Overall Rating: " + (game.rating ?? "N/A"))
+                Text("Rating")
+                    .fontWeight(.heavy)
+                Text(gameRateCheck(rating: (game.rating ?? "N/A")))
+                    .font(.title).colorInvert()
+                    .padding()
+                    .background(getColor(rating: (game.rating ?? "0")))
+                    .cornerRadius(10)
                     .padding(.bottom)
                 Text("Description: ")
                     .fontWeight(.heavy)
@@ -54,3 +61,8 @@ struct GameView_Previews: PreviewProvider {
     }
 }
 
+func gameRateCheck(rating: String) -> String {
+    
+    if (rating == "") {return "?"}
+    return rating
+}
