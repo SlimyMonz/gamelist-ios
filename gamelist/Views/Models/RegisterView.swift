@@ -80,6 +80,7 @@ struct RegisterPage : View {
                 
             }) {
                 DoRegisterButton()
+                    .padding()
             }
             .alert("Check your email!", isPresented: $reg_pressed) {
                 Button("Ok", role: .cancel) {}

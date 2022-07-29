@@ -38,8 +38,10 @@ struct GameView: View {
                 Text("Game ID: " + game.id)
                     .font(.footnote).padding(.bottom)
                 Text("Overall Rating: " + (game.rating ?? "N/A"))
-                Text("User Rating: " + (game.userRating ?? "0"))
-                Text("Description: " + (game.description ?? "N/A"))
+                    .padding(.bottom)
+                Text("Description: ")
+                    .fontWeight(.heavy)
+                Text(game.description ?? "N/A")
             }
             .navigationTitle(self.game.name ?? "").navigationBarTitleDisplayMode(.inline).padding()
         }

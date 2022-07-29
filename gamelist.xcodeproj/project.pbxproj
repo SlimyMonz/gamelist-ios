@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		75337AC8288F189600EDDB70 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75337AC7288F189600EDDB70 /* GameView.swift */; };
+		754AFFA8289330F200F9F22E /* ResetPassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754AFFA7289330F200F9F22E /* ResetPassView.swift */; };
 		755037F1288CDAEB0052B8EC /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755037F0288CDAEB0052B8EC /* ListView.swift */; };
 		75552E3C28766C0E0016CC6A /* gamelistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75552E3B28766C0E0016CC6A /* gamelistApp.swift */; };
 		75552E3E28766C0E0016CC6A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75552E3D28766C0E0016CC6A /* LoginView.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		75337AC7288F189600EDDB70 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		754AFFA7289330F200F9F22E /* ResetPassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassView.swift; sourceTree = "<group>"; };
 		755037F0288CDAEB0052B8EC /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		75552E3828766C0E0016CC6A /* gamelist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gamelist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75552E3B28766C0E0016CC6A /* gamelistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamelistApp.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				75FB1BE4287F851F00033702 /* WebView.swift */,
 				75C6AFBB288DB9460077FC56 /* ListCell.swift */,
 				75337AC7288F189600EDDB70 /* GameView.swift */,
+				754AFFA7289330F200F9F22E /* ResetPassView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				75FB1BDC287F4FB500033702 /* RegisterView.swift in Sources */,
 				75FB1BE5287F851F00033702 /* WebView.swift in Sources */,
 				75552E3E28766C0E0016CC6A /* LoginView.swift in Sources */,
+				754AFFA8289330F200F9F22E /* ResetPassView.swift in Sources */,
 				75CC2EC7288E0CF1003A312B /* userlist.swift in Sources */,
 				75F65EE2287FA3E0000FBA8F /* HomePage.swift in Sources */,
 				75FB1BDE287F7BF100033702 /* MainView.swift in Sources */,

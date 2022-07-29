@@ -12,16 +12,20 @@ struct ListCell: View {
     let game: GAME
     
     var body: some View {
-
-            NavigationLink {
-                GameView(game: game)
-            } label: {
-                VStack (alignment: .leading, spacing: 8) {
-                    Text(self.game.name ?? "NO NAME!")
-                        .fontWeight(.semibold)
-                        .lineLimit(1)
+        
+        NavigationLink {
+            GameView(game: game)
+        } label: {
+            VStack (alignment: .leading, spacing: 8) {
+                Text(self.game.name ?? "NO NAME!")
+                    .fontWeight(.semibold)
+                    .lineLimit(1)
+                
+                if (self.game.userRating != nil && self.game.userRating != "") {
+                    Text("My rating: " + (self.game.userRating ?? "") + "/10").font(.subheadline)
                 }
             }
+        }
     }
 }
 
