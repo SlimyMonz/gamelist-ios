@@ -18,6 +18,8 @@ struct HomePage: View {
                 
                 ConsoleSearchView(platform: Constant.xsx)
                 
+                ConsoleSearchView(platform: Constant.ninswitch)
+                
                 ConsoleSearchView(platform: Constant.ps4)
                 
                 ConsoleSearchView(platform: Constant.xbone)
