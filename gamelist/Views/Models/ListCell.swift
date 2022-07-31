@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+
+
+
+
 struct ListCell: View {
     
     let game: GAME

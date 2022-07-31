@@ -7,7 +7,7 @@
 
 import Foundation
 
-let game_demo = GAME(id: "12345", name: "test game", description: "not a real game", cover: "//images.igdb.com/igdb/image/upload/t_thumb/co23nc.jpg", rating: "8", userRating: "3")
+let game_demo = GAME(id: "12345", name: "test game", description: "", cover: "//images.igdb.com/igdb/image/upload/t_thumb/co23nc.jpg", userRating: "3", platforms: ["xbox", "pc"], genres: ["shooty", "funny"])
 
 enum Constant
 {
@@ -37,8 +37,9 @@ struct GAME: Decodable, Identifiable
     let name: String?
     let description: String?
     let cover: String?
-    let rating: String?
     let userRating: String?
+    let platforms: [String]?
+    let genres: [String]?
     
     enum CodingKeys: String, CodingKey
     {
@@ -46,8 +47,9 @@ struct GAME: Decodable, Identifiable
         case name = "name"
         case description = "description"
         case cover = "image"
-        case rating = "rating"
         case userRating = "personalRating"
+        case platforms = "platforms"
+        case genres = "genres"
     }
 }
 
