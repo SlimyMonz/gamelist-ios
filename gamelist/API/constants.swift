@@ -9,6 +9,9 @@ import Foundation
 
 let game_demo = GAME(id: "12345", name: "test game", description: "", cover: "//images.igdb.com/igdb/image/upload/t_thumb/co23nc.jpg", userRating: "3", platforms: ["xbox", "pc"], genres: ["shooty", "funny"])
 
+let user_demo = USER(id: "12345", firstName: "some", lastName: "guy", username: "someguy", email: "some@guy.com", verified: true)
+
+
 enum Constant
 {
     static let base_url = "https://my-game-list-front.herokuapp.com/api/"
@@ -30,4 +33,5 @@ enum Constant
     static let pc = "PC"
     static let mobile = "Mobile"
 }
+
 

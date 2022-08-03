@@ -51,39 +51,31 @@ struct JSON: Decodable
 }
 
 
-struct USER: Decodable
+struct USER: Codable, Identifiable
 {
     let id: String
-    let verified: Bool
-    let username: String
-    let email: String
-    let firstName: String
-    let lastName: String
+    
+    let firstName: String?
+    let lastName: String?
+    
+    let username: String?
+    let email: String?
+    
+    let verified: Bool?
     
     enum CodingKeys: String, CodingKey
     {
         case id = "_id"
-        case verified = "verified"
-        case username = "userName"
-        case email = "email"
+        
         case firstName = "firstName"
         case lastName = "lastName"
-    }
-}
-
-
-struct REGISTER: Decodable
-{
-    let message: String
-    let id: String
-    let email: String
-    let firstName: String
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case message = "message"
-        case id = "userId"
+        
+        case username = "userName"
         case email = "email"
-        case firstName = "firstName"
+        
+        case verified = "verified"
     }
 }
+
+
+

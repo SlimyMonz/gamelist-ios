@@ -55,13 +55,7 @@ class loginAPI: ObservableObject {
     
     func getData() {
         getJWT {(token, user) in
-            Mem.dm.token = token
-            Mem.dm.id = user.id
-            Mem.dm.verified = user.verified
-            Mem.dm.username = user.username
-            Mem.dm.firstName = user.firstName
-            Mem.dm.lastName = user.lastName
-            Mem.dm.email = user.email
+            // put in a USER to fill and return
         }
     }
     

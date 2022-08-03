@@ -14,7 +14,7 @@ func decode_jwt(jwt: String) -> USER?
     let body = parts[1]
     
     let base64 = base64url_to_base64(base64url: body)
-    guard let jsondata = base64Decoded(base64: base64) else { return nil }
+    guard let jsondata = base64Decoded(base64: base64) else { return bad_user }
     let payload = decode_JSON(json: jsondata)
     
     return payload
@@ -43,10 +43,8 @@ func decode_JSON(json: Data) -> USER
         let data = try JSONDecoder().decode(JSON.self, from: json)
         return data.user[0]
     } catch {
-        return USER(id: "-1", verified: false, username: "", email: "", firstName: "", lastName: "")
+        return bad_user
     }
 }
 
-
-
-
+let bad_user = USER(id: "-1", firstName: "", lastName: "", username: "", email: "", verified: nil)

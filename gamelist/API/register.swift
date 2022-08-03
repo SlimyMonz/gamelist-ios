@@ -84,19 +84,19 @@ class registerAPI: ObservableObject {
     
     func sendData() {
         sendRegister { (data) in
-            if (!data.message.isEmpty) {
+            if (data.id != "-1") {
                 self.dmv.registered = true
                 self.dmv.id = data.id
                 self.sendEmail { (response) in
                     self.error = response
                 }
             } else {
-                self.error = "Invalid."
+                self.error = "Invalid! Bad!"
             }
         }
     }
     
-    func sendRegister(completion: @escaping (REGISTER) -> Void) {
+    func sendRegister(completion: @escaping (USER) -> Void) {
         
         guard
             let url = URL(string: Constant.base_url + Constant.register_url)
@@ -138,7 +138,7 @@ class registerAPI: ObservableObject {
                 return
             }
             do {
-                let decodedData = try JSONDecoder().decode(REGISTER.self, from: data)
+                let decodedData = try JSONDecoder().decode(USER.self, from: data)
                 completion(decodedData)
             } catch {
                 return
