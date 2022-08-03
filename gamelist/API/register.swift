@@ -34,7 +34,7 @@ struct registerView: View {
                     pass: "empty",
                     first: "empty",
                     last: "empty",
-                    email: "khyrdantai@icloud.com"
+                    email: "testemail@email.com"
                 )
                 self.buttonPressed = checkEmail
                 vm.sendData()

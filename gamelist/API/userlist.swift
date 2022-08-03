@@ -21,7 +21,7 @@ struct userlist: View {
                 .foregroundColor(.blue)
                 .fontWeight(.semibold)
                 .onTapGesture {
-                    search.setUser(id: Temp.testID, token: Temp.testToken)
+                    search.setUser(id: "insert test ID here", token: "paste test token here")
                     search.doSearch()
                 }
             Text(search.list.description)

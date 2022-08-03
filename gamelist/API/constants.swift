@@ -11,13 +11,13 @@ let game_demo = GAME(id: "12345", name: "test game", description: "", cover: "//
 
 enum Constant
 {
-    static let base_url = "https://my-game-list-front.herokuapp.com/"
-    static let login_url = "api/users/login/"
-    static let register_url = "api/users/register/"
-    static let game_url = "api/games/searchAllGames"
-    static let userlist_url = "api/games/getUserGames"
-    static let email_url = "api/email/sendVerification"
-    static let reset = "api/email/passwordReset"
+    static let base_url = "https://my-game-list-front.herokuapp.com/api/"
+    static let login_url = "users/login/"
+    static let register_url = "users/register/"
+    static let game_url = "games/searchAllGames/"
+    static let userlist_url = "games/getUserGames/"
+    static let email_url = "email/sendVerification/"
+    static let reset = "email/passwordReset/"
     
     static let xsx = "Xbox Series X|S"
     static let xbone = "Xbox One"
@@ -31,82 +31,3 @@ enum Constant
     static let mobile = "Mobile"
 }
 
-struct GAME: Decodable, Identifiable
-{
-    let id: String
-    let name: String?
-    let description: String?
-    let cover: String?
-    let userRating: String?
-    let platforms: [String]?
-    let genres: [String]?
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case id = "_id"
-        case name = "name"
-        case description = "description"
-        case cover = "image"
-        case userRating = "personalRating"
-        case platforms = "platforms"
-        case genres = "genres"
-    }
-}
-
-
-
-struct JWT: Decodable
-{
-    let token: String
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case token = "token"
-    }
-}
-
-struct JSON: Decodable
-{
-    let user: [USER]
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case user = "user"
-    }
-}
-
-struct USER: Decodable
-{
-    let id: String
-    let verified: Bool
-    let username: String
-    let email: String
-    let firstName: String
-    let lastName: String
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case id = "_id"
-        case verified = "verified"
-        case username = "userName"
-        case email = "email"
-        case firstName = "firstName"
-        case lastName = "lastName"
-    }
-}
-
-struct REGISTER: Decodable
-{
-    let message: String
-    let id: String
-    let email: String
-    let firstName: String
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case message = "message"
-        case id = "userId"
-        case email = "email"
-        case firstName = "firstName"
-    }
-}

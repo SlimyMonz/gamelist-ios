@@ -23,7 +23,7 @@ struct login: View {
             .foregroundColor(.blue)
             .fontWeight(.semibold)
             .onTapGesture {
-                vm.setInfo(username: Temp.username, password: Temp.password)
+                vm.setInfo(username: "test", password: "test")
                 vm.getData()
             }
             Text(Mem.dm.token)
